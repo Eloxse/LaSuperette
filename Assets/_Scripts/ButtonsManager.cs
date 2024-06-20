@@ -44,6 +44,12 @@ public class ButtonsManager : MonoBehaviour
      */
     public void DeskConnection()
     {
+        StartCoroutine(DelayDeskConnection());
+    }
+
+    private IEnumerator DelayDeskConnection()
+    {
+        yield return new WaitForSeconds(timeBeforeLoad);
         unlockScreen.SetActive(false);
         desk.SetActive(true);
     }

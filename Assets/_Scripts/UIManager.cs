@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour
      */
     private void DisplayTime()
     {
-        txt_Clock.text = DateTime.Now.ToShortTimeString();       //Display time.
+        txt_Clock.text = DateTime.Now.ToShortTimeString();
     }
 
     #endregion

@@ -1,14 +1,13 @@
 using UnityEngine;
 
-#if UNITY_STANDALONE_WIN
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR
 using System;
 using System.Runtime.InteropServices;
-#endif
 
-public class WindowsEventInterceptor : MonoBehaviour
+public class WindowsEventSystem : MonoBehaviour
 {
+    #region Variables
 
-#if UNITY_STANDALONE_WIN
     [DllImport("user32.dll")]
     private static extern IntPtr GetForegroundWindow();
 
@@ -32,6 +31,15 @@ public class WindowsEventInterceptor : MonoBehaviour
 
     private const int GWL_WNDPROC = -4;
 
+    #endregion
+
+    #region Built-In Methods
+
+    /**
+     * <summary>
+     * This code intercept Alt+F4 command and do nothing on Windows OS.
+     * </summary>
+     */
     void Start()
     {
         hwnd = GetForegroundWindow();
@@ -42,7 +50,7 @@ public class WindowsEventInterceptor : MonoBehaviour
     {
         if (msg == WM_SYSCOMMAND && wParam.ToInt32() == SC_CLOSE)
         {
-            // Intercept Alt+F4 and do nothing
+            //Intercept Alt+F4 and do nothing.
             return IntPtr.Zero;
         }
 
@@ -51,24 +59,13 @@ public class WindowsEventInterceptor : MonoBehaviour
 
     void OnApplicationQuit()
     {
-        // Restore the original window procedure when the application quits
+        //Restore the original window procedure when the application quits.
         if (hwnd != IntPtr.Zero && oldWndProc != IntPtr.Zero)
         {
             SetWindowLongPtr(hwnd, GWL_WNDPROC, (WndProc)Marshal.GetDelegateForFunctionPointer(oldWndProc, typeof(WndProc)));
         }
     }
+
+    #endregion
+}
 #endif
-
-}
-
-public class KeyEventInterceptor : MonoBehaviour
-{
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.LeftAlt) && Input.GetKeyDown(KeyCode.F4))
-        {
-            Debug.Log("Alt+F4 intercepted and ignored.");
-            // Do nothing, effectively ignoring Alt+F4
-        }
-    }
-}
