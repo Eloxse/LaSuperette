@@ -8,7 +8,6 @@ public class UIManager : MonoBehaviour
 
     [Header("Display Time")]
     [SerializeField] private TMP_Text txt_Clock;
-    [SerializeField] private TMP_Text txt_Date;
 
     #endregion
 
@@ -23,13 +22,14 @@ public class UIManager : MonoBehaviour
 
     #region Current Time
 
-    /* <summary>
-     * Display real clock and date.
+    /**
+     * <summary>
+     * Display real time.
+     * </summary>
      */
     private void DisplayTime()
     {
         txt_Clock.text = DateTime.Now.ToShortTimeString();       //Display time.
-        txt_Date.text = DateTime.Now.ToLongDateString();        //Display date.
     }
 
     #endregion

@@ -11,14 +11,20 @@ public class ButtonsManager : MonoBehaviour
     [Header("Screen Saver")]
     [SerializeField] private GameObject screenSaver;
     [SerializeField] private GameObject unlockScreen;
+    [SerializeField] private GameObject desk;
+
+    [Header("Video Monitoring")]
+    [SerializeField] private GameObject monitoringSoftware;
 
     #endregion
 
     #region Screen Saver
 
-    /* <summary>
+    /**
+     * <summary>
      * Button: switch from screen saver to unlock screen.
-     * Coroutine alow a time before executing.
+     * Coroutine alows time before executing.
+     * </summary>
      */
     public void ExitScreenSaver()
     {
@@ -29,22 +35,37 @@ public class ButtonsManager : MonoBehaviour
     {
         yield return new WaitForSeconds(timeBeforeLoad);
         screenSaver.SetActive(false);
-        unlockScreen.SetActive(true);
     }
 
-    /* <summary>
+    /**
+     * <summary>
      * Button: connection to the desk.
-     * Coroutine alow a time before executing.
+     * </summary>
      */
     public void DeskConnection()
     {
-        StartCoroutine(DelayDeskConnection());
+        unlockScreen.SetActive(false);
+        desk.SetActive(true);
     }
 
-    private IEnumerator DelayDeskConnection()
+    #endregion
+
+    #region Video Monitoring
+
+    /**
+     * <summary>
+     * Button: open video monitoring software.
+     * </summary>
+     */
+    public void OpenVideoMonitoring()
+    {
+        StartCoroutine(DelayOpenSoftware());
+    }
+
+    private IEnumerator DelayOpenSoftware()
     {
         yield return new WaitForSeconds(timeBeforeLoad);
-
+        monitoringSoftware.SetActive(true);
     }
 
     #endregion
