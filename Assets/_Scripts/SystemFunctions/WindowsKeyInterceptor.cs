@@ -42,10 +42,10 @@ public class WindowsKeyInterceptor : MonoBehaviour
         {
             int vkCode = Marshal.ReadInt32(lParam);
 
-            // Check if the key is the Windows key (VK_LWIN or VK_RWIN)
+            // Check if the key is the Windows key (VK_LWIN or VK_RWIN).
             if (vkCode == VK_LWIN || vkCode == VK_RWIN)
             {
-                return (IntPtr)1; // Return 1 to block the key
+                return (IntPtr)1; // Return 1 to block the key.
             }
         }
         return CallNextHookEx(_hookID, nCode, wParam, lParam);

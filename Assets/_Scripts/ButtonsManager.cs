@@ -21,7 +21,7 @@ public class ButtonsManager : MonoBehaviour
 
     #endregion
 
-    #region Built-In Methods
+    #region Built-In Method
 
     private void Start()
     {

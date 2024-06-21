@@ -14,15 +14,15 @@ public class SFXManager : MonoBehaviour
 
     #region Properties
 
-    //Singleton.
-    public static SFXManager Instance => _instance;
-
     //SFX.
     public AudioSource SfxWindowsLaunch => sfxWindowsLaunch;
 
+    //Singleton.
+    public static SFXManager Instance => _instance;
+
     #endregion
 
-    #region Built-In Methods
+    #region Built-In Method
 
     private void Awake()
     {

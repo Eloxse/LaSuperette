@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     [Header("Display Time")]
     [SerializeField] private TMP_Text txt_Clock;
     [SerializeField] private TMP_Text txt_Clock1;
+    [SerializeField] private TMP_Text txt_Clock2;
 
     #endregion
 
@@ -32,6 +33,7 @@ public class UIManager : MonoBehaviour
     {
         txt_Clock.text = DateTime.Now.ToShortTimeString();
         txt_Clock1.text = DateTime.Now.ToShortTimeString();
+        txt_Clock2.text = DateTime.Now.ToShortTimeString();
     }
 
     #endregion
