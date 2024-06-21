@@ -15,6 +15,9 @@ public class ButtonsManager : MonoBehaviour
 
     [Header("Video Monitoring")]
     [SerializeField] private GameObject monitoringSoftware;
+    [SerializeField] private GameObject vidTechnicalArea;
+    [SerializeField] private GameObject vidNorbertDesk;
+    [SerializeField] private GameObject vidSupermarket;
 
     //Singleton.
     private SFXManager _sfxManager;
@@ -89,5 +92,28 @@ public class ButtonsManager : MonoBehaviour
         monitoringSoftware.SetActive(true);
     }
 
+    public void PlayVidTechnicalArea()
+    {
+        vidTechnicalArea.SetActive(true);
+
+        vidNorbertDesk.SetActive(false);
+        vidSupermarket.SetActive(false);
+    }
+
+    public void PlayVidNorbertDesk()
+    {
+        vidNorbertDesk.SetActive(true);
+
+        vidTechnicalArea.SetActive(true);
+        vidSupermarket.SetActive(false);
+    }
+
+    public void PlayVidSupermarket()
+    {
+        vidSupermarket.SetActive(true);
+
+        vidTechnicalArea.SetActive(false);
+        vidNorbertDesk.SetActive(false);
+    }
     #endregion
 }
