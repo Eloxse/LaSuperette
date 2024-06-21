@@ -16,6 +16,19 @@ public class ButtonsManager : MonoBehaviour
     [Header("Video Monitoring")]
     [SerializeField] private GameObject monitoringSoftware;
 
+    //Singleton.
+    private SFXManager _sfxManager;
+
+    #endregion
+
+    #region Built-In Methods
+
+    private void Start()
+    {
+        //Singleton.
+        _sfxManager = SFXManager.Instance;
+    }
+
     #endregion
 
     #region Screen Saver
@@ -49,7 +62,9 @@ public class ButtonsManager : MonoBehaviour
 
     private IEnumerator DelayDeskConnection()
     {
+        _sfxManager.SfxWindowsLaunch.Play();
         yield return new WaitForSeconds(timeBeforeLoad);
+
         unlockScreen.SetActive(false);
         desk.SetActive(true);
     }
