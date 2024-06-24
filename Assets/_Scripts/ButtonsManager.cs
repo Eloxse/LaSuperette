@@ -74,7 +74,7 @@ public class ButtonsManager : MonoBehaviour
 
     #endregion
 
-    #region Video Monitoring
+    #region Monitoring Software
 
     /**
      * <summary>
@@ -92,6 +92,15 @@ public class ButtonsManager : MonoBehaviour
         monitoringSoftware.SetActive(true);
     }
 
+    #endregion
+
+    #region Monitoring Software Top Plan
+
+    /**
+     * <summary>
+     * Button: play video monitoring of top plan.
+     * </summary>
+     */
     public void PlayVidTechnicalArea()
     {
         vidTechnicalArea.SetActive(true);
@@ -104,10 +113,20 @@ public class ButtonsManager : MonoBehaviour
     {
         vidNorbertDesk.SetActive(true);
 
-        vidTechnicalArea.SetActive(true);
+        vidTechnicalArea.SetActive(false);
         vidSupermarket.SetActive(false);
     }
 
+    #endregion
+
+    #region Monitoring Software Bottom Plan
+
+
+    /**
+     * <summary>
+     * Button: play video monitoring of bottom plan.
+     * </summary>
+     */
     public void PlayVidSupermarket()
     {
         vidSupermarket.SetActive(true);
@@ -115,5 +134,6 @@ public class ButtonsManager : MonoBehaviour
         vidTechnicalArea.SetActive(false);
         vidNorbertDesk.SetActive(false);
     }
+
     #endregion
 }
