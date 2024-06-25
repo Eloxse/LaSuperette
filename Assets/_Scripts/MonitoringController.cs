@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Windows;
 
 public class MonitoringController : MonoBehaviour
 {
@@ -82,7 +81,7 @@ public class MonitoringController : MonoBehaviour
     public void PlayVidTechnicalArea() => PlayVideo(allVideos.Find(v => v.name == "VID_TechnicalArea"));
     public void PlayVidStorage() => PlayVideo(allVideos.Find(v => v.name == "VID_Storage"));
     public void PlayVidHousehold() => PlayVideo(allVideos.Find(v => v.name == "VID_Household"));
-    public void PlayVidLockroom() => PlayVideo(allVideos.Find(v => v.name == "VID_Lockroom"));
+    public void PlayVidLocker() => PlayVideo(allVideos.Find(v => v.name == "VID_Locker"));
     public void PlayVidSupermarket() => PlayVideo(allVideos.Find(v => v.name == "VID_Supermarket"));
     public void PlayVidBar() => PlayVideo(allVideos.Find(v => v.name == "VID_Bar"));
     public void PlayVidStock() => PlayVideo(allVideos.Find(v => v.name == "VID_Stock"));
