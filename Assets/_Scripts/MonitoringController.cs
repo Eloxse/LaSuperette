@@ -18,18 +18,24 @@ public class MonitoringController : MonoBehaviour
 
     [Header("Video Manager")]
     [SerializeField] private Slider slid_TimeProgress;
-    [SerializeField] private TextMeshProUGUI txt_elapsedTime, txt_remainingTime;
+    [SerializeField] private TextMeshProUGUI txt_ElapsedTime, txt_RemainingTime;
     [SerializeField] private GameObject vid_AudioVisualizer;
     [SerializeField] private List<GameObject> allVideos;
-    public Slider timeSlotSlider;
-    private Dictionary<int, GameObject> timeSlotToVideoMap;
-    public int correctTimeSlot;
-    private bool iscorect = false;
-    public GameObject correctVideo;
+
+    [Header("Int Video")]
+    [SerializeField] private Slider slid_TimeSlot;
+    [SerializeField] private GameObject vid_Hint;
+    [SerializeField] private int correctHintSlot;
 
     //Monitoring Software.
     private VideoPlayer _currentVideoPlayer;
     private VideoPlayer _audioVisualizerPlayer;
+
+    //Hint Video.
+    private Dictionary<int, GameObject> _timeSlotToVideoMap;
+    private bool _isCorrect = false;
+    private GameObject _previousVideo;
+    private double _previousVideoTime;
 
     //Time Code.
     private string _input;
@@ -61,15 +67,11 @@ public class MonitoringController : MonoBehaviour
     {
         InitiliazedVideo();
         InitializeTimeSlotToVideoMap();
+
         //Initialize the slider.
         if (slid_TimeProgress != null)
         {
             slid_TimeProgress.minValue = 0;
-        }
-        // Add listener to timeSlotSlider
-        if (timeSlotSlider != null)
-        {
-            timeSlotSlider.onValueChanged.AddListener(delegate { OnSliderValueChanged(); });
         }
     }
 
@@ -119,40 +121,74 @@ public class MonitoringController : MonoBehaviour
     #endregion
 
     #region Video Monitoring
+
+    /**
+     * <summary>
+     * Initialize the slider to react to the right answer.
+     * </summary>
+     */
     private void InitializeTimeSlotToVideoMap()
     {
-        timeSlotToVideoMap = new Dictionary<int, GameObject>
-        {
-            { 0, null }, // 00:00 - 02:00
-            { 1, null }, // 02:00 - 04:00
-            { 2, null }, // 04:00 - 06:00
-            { 3, null }, // 06:00 - 08:00
-            { 4, null }, // 08:00 - 10:00
-            { 5, null }, // 10:00 - 12:00
-            { 6, correctVideo }, // 12:00 - 14:00
-            { 7, null }, // 14:00 - 16:00
-            { 8, null }, // 16:00 - 18:00
-            { 9, null }, // 18:00 - 20:00
-            { 10, null }, // 20:00 - 22:00
-            { 11, null }  // 22:00 - 00:00
+        _timeSlotToVideoMap = new Dictionary<int, GameObject>
+        {            
+            { 0, null }, // 00:00 - 02:00.
+            { 1, null }, // 02:00 - 04:00.
+            { 2, null }, // 04:00 - 06:00.
+            { 3, null }, // 06:00 - 08:00.
+            { 4, null }, // 08:00 - 10:00.
+            { 5, null }, // 10:00 - 12:00.
+            { 6, vid_Hint }, // 12:00 - 14:00.
+            { 7, null }, // 14:00 - 16:00.
+            { 8, null }, // 16:00 - 18:00.
+            { 9, null }, // 18:00 - 20:00.
+            { 10, null }, // 20:00 - 22:00.
+            { 11, null }  // 22:00 - 00:00.
         };
 
-        // Set the correct video in the map based on the inspector setting
-        if (timeSlotToVideoMap.ContainsKey(correctTimeSlot))
+        // Set the hint video in the map based on the inspector.
+        if (_timeSlotToVideoMap.ContainsKey(correctHintSlot))
         {
-            timeSlotToVideoMap[correctTimeSlot] = correctVideo;
+            _timeSlotToVideoMap[correctHintSlot] = vid_Hint;
         }
     }
-    // Method to be called when the slider value changes
+
+    /**
+     * <summary>
+     * Method to be called when the slider value changes.
+     * </summary>
+     */
     public void OnSliderValueChanged()
     {
-        int selectedTimeSlot = Mathf.FloorToInt(timeSlotSlider.value / 2);
+        int selectedTimeSlot = Mathf.FloorToInt(slid_TimeSlot.value / 2);
 
-        if (timeSlotToVideoMap.TryGetValue(selectedTimeSlot, out GameObject selectedVideo))
+        if (_timeSlotToVideoMap.TryGetValue(selectedTimeSlot, out GameObject selectedVideo))
         {
-            PlayVideo(selectedVideo);
+            if (selectedVideo != null)
+            {
+                // Save the state of the previous video.
+                _previousVideo = selectedVideo;
+                _previousVideoTime = _currentVideoPlayer != null ? _currentVideoPlayer.time : 0;
+
+                // Play the selected video.
+                PlayVideo(selectedVideo);
+                _isCorrect = true;
+            }
+            else
+            {
+                if (_isCorrect)
+                {
+                    // Incorrect answer, resume the previous video.
+                    if (_isCorrect && _previousVideo != null)
+                    {
+                        PlayVideo(_previousVideo);
+                        _currentVideoPlayer.time = _previousVideoTime;
+                        _currentVideoPlayer.Play();
+                    }
+                }
+            }
         }
     }
+
     /**
      * <summary>
      * Activates the specified video and deactivates all others.
@@ -204,14 +240,14 @@ public class MonitoringController : MonoBehaviour
             double elapsedTime = _currentVideoPlayer.time;
             double remainingTime = _currentVideoPlayer.length - elapsedTime;
 
-            if (txt_elapsedTime != null)
+            if (txt_ElapsedTime != null)
             {
-                txt_elapsedTime.text = FormatTime(elapsedTime);
+                txt_ElapsedTime.text = FormatTime(elapsedTime);
             }
 
-            if (txt_remainingTime != null)
+            if (txt_RemainingTime != null)
             {
-                txt_remainingTime.text = FormatTime(remainingTime);
+                txt_RemainingTime.text = FormatTime(remainingTime);
             }
         }
     }
