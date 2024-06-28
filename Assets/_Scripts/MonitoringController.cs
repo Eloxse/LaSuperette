@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.UI;
+using TMPro;
 
 public class MonitoringController : MonoBehaviour
 {
@@ -13,14 +14,18 @@ public class MonitoringController : MonoBehaviour
 
     [Header("Monitoring Software")]
     [SerializeField] private GameObject monitoringSoftware;
-    [SerializeField] private GameObject planDownstairs;
-    [SerializeField] private GameObject planUpstairs;
+    [SerializeField] private GameObject planDownstairs, planUpstairs;
 
-    [Header("Video Monitoring")]
+    [Header("Video Manager")]
     [SerializeField] private Slider slid_TimeProgress;
-    [SerializeField] private Text txt_elapsedTime;
+    [SerializeField] private TextMeshProUGUI txt_elapsedTime, txt_remainingTime;
     [SerializeField] private GameObject vid_AudioVisualizer;
     [SerializeField] private List<GameObject> allVideos;
+    public Slider timeSlotSlider;
+    private Dictionary<int, GameObject> timeSlotToVideoMap;
+    public int correctTimeSlot;
+    private bool iscorect = false;
+    public GameObject correctVideo;
 
     //Monitoring Software.
     private VideoPlayer _currentVideoPlayer;
@@ -55,17 +60,23 @@ public class MonitoringController : MonoBehaviour
     private void Start()
     {
         InitiliazedVideo();
-
+        InitializeTimeSlotToVideoMap();
         //Initialize the slider.
         if (slid_TimeProgress != null)
         {
             slid_TimeProgress.minValue = 0;
+        }
+        // Add listener to timeSlotSlider
+        if (timeSlotSlider != null)
+        {
+            timeSlotSlider.onValueChanged.AddListener(delegate { OnSliderValueChanged(); });
         }
     }
 
     private void Update()
     {
         UpdateSlider();
+        UpdateTimeTexts();
     }
 
     #endregion
@@ -108,7 +119,40 @@ public class MonitoringController : MonoBehaviour
     #endregion
 
     #region Video Monitoring
+    private void InitializeTimeSlotToVideoMap()
+    {
+        timeSlotToVideoMap = new Dictionary<int, GameObject>
+        {
+            { 0, null }, // 00:00 - 02:00
+            { 1, null }, // 02:00 - 04:00
+            { 2, null }, // 04:00 - 06:00
+            { 3, null }, // 06:00 - 08:00
+            { 4, null }, // 08:00 - 10:00
+            { 5, null }, // 10:00 - 12:00
+            { 6, correctVideo }, // 12:00 - 14:00
+            { 7, null }, // 14:00 - 16:00
+            { 8, null }, // 16:00 - 18:00
+            { 9, null }, // 18:00 - 20:00
+            { 10, null }, // 20:00 - 22:00
+            { 11, null }  // 22:00 - 00:00
+        };
 
+        // Set the correct video in the map based on the inspector setting
+        if (timeSlotToVideoMap.ContainsKey(correctTimeSlot))
+        {
+            timeSlotToVideoMap[correctTimeSlot] = correctVideo;
+        }
+    }
+    // Method to be called when the slider value changes
+    public void OnSliderValueChanged()
+    {
+        int selectedTimeSlot = Mathf.FloorToInt(timeSlotSlider.value / 2);
+
+        if (timeSlotToVideoMap.TryGetValue(selectedTimeSlot, out GameObject selectedVideo))
+        {
+            PlayVideo(selectedVideo);
+        }
+    }
     /**
      * <summary>
      * Activates the specified video and deactivates all others.
@@ -126,7 +170,7 @@ public class MonitoringController : MonoBehaviour
                 _currentVideoPlayer = video.GetComponent<VideoPlayer>();
                 _currentVideoPlayer.Play();
 
-                //Slider.
+                //Time slider.
                 if (slid_TimeProgress != null)
                 {
                     slid_TimeProgress.maxValue = (float)_currentVideoPlayer.length;
@@ -146,6 +190,42 @@ public class MonitoringController : MonoBehaviour
         {
             slid_TimeProgress.value = (float)_currentVideoPlayer.time;
         }
+    }
+
+    /**
+     * <summary>
+     * Update time video.
+     * </summary>
+     */
+    private void UpdateTimeTexts()
+    {
+        if (_currentVideoPlayer != null && slid_TimeProgress != null)
+        {
+            double elapsedTime = _currentVideoPlayer.time;
+            double remainingTime = _currentVideoPlayer.length - elapsedTime;
+
+            if (txt_elapsedTime != null)
+            {
+                txt_elapsedTime.text = FormatTime(elapsedTime);
+            }
+
+            if (txt_remainingTime != null)
+            {
+                txt_remainingTime.text = FormatTime(remainingTime);
+            }
+        }
+    }
+
+    /**
+     * <summary>
+     * Timer format.
+     * </summary>
+     */
+    private string FormatTime(double time)
+    {
+        int minutes = Mathf.FloorToInt((float)time / 60F);
+        int seconds = Mathf.FloorToInt((float)time - minutes * 60);
+        return string.Format("{0:0}:{1:00}", minutes, seconds);
     }
 
     /**
