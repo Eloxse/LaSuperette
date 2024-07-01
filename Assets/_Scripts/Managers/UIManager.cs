@@ -26,16 +26,17 @@ public class UIManager : MonoBehaviour
 
     #region Built-In Methods
 
-    private void Update()
-    {
-        DisplayTime();
-    }
-
     private void Start()
     {
         //Singleton.
         _sfxManager = SFXManager.Instance;
     }
+
+    private void Update()
+    {
+        DisplayTime();
+    }
+
 
     #endregion
 
