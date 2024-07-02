@@ -15,6 +15,7 @@ public class MonitoringController : MonoBehaviour
     [Header("Monitoring Software")]
     [SerializeField] private GameObject monitoringSoftware;
     [SerializeField] private GameObject planDownstairs, planUpstairs;
+    [SerializeField] private GameObject errorPopUp;
 
     [Header("Video Manager")]
     [SerializeField] private Slider slid_TimeProgress;
