@@ -1000,7 +1000,7 @@ VideoPlayer:
   - 1
   m_Url: 
   m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
+  m_DirectAudioMutes: 01
   m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
@@ -1020,7 +1020,6 @@ GameObject:
   - component: {fileID: 269337197}
   - component: {fileID: 269337196}
   - component: {fileID: 269337195}
-  - component: {fileID: 269337198}
   m_Layer: 5
   m_Name: BTN_Connection
   m_TagString: Untagged
@@ -1092,7 +1091,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 269337198}
+      - m_Target: {fileID: 2080420621}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: DeskConnection
         m_Mode: 1
@@ -1142,23 +1141,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 269337192}
   m_CullTransparentMesh: 1
---- !u!114 &269337198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 269337192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19d4643568eb54e4c8b52f06cc8a51db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeBeforeLoad: 0.5
-  txt_Clocks: []
-  screenSaver: {fileID: 0}
-  unlockScreen: {fileID: 1930514777}
-  desk: {fileID: 1928140807}
 --- !u!1 &277698763
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,7 +1356,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 293334737}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2080420622}
+        m_TargetAssemblyTypeName: MonitoringController, Assembly-CSharp
+        m_MethodName: ErrorPopUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &293334737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3294,7 +3288,6 @@ GameObject:
   - component: {fileID: 719376359}
   - component: {fileID: 719376358}
   - component: {fileID: 719376357}
-  - component: {fileID: 719376360}
   m_Layer: 5
   m_Name: BTN_ExitScreenSaver
   m_TagString: Untagged
@@ -3377,7 +3370,7 @@ MonoBehaviour:
           m_StringArgument: ScreenSaver
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 719376360}
+      - m_Target: {fileID: 2080420621}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: ExitScreenSaver
         m_Mode: 1
@@ -3427,23 +3420,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 719376355}
   m_CullTransparentMesh: 1
---- !u!114 &719376360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 719376355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19d4643568eb54e4c8b52f06cc8a51db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeBeforeLoad: 0.5
-  txt_Clocks: []
-  screenSaver: {fileID: 496367191}
-  unlockScreen: {fileID: 0}
-  desk: {fileID: 0}
 --- !u!1 &721306863
 GameObject:
   m_ObjectHideFlags: 0
@@ -3717,7 +3693,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 739742878}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2080420622}
+        m_TargetAssemblyTypeName: MonitoringController, Assembly-CSharp
+        m_MethodName: ErrorPopUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &739742878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4075,7 +4063,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 878701007}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2080420622}
+        m_TargetAssemblyTypeName: MonitoringController, Assembly-CSharp
+        m_MethodName: ErrorPopUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &878701007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4552,8 +4552,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.40166044, g: 0.40166044, b: 0.40166044, a: 0.9529412}
+    m_PressedColor: {r: 0.10460389, g: 0.10460389, b: 0.10460389, a: 0.60784316}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -4573,7 +4573,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 977837571}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2080420622}
+        m_TargetAssemblyTypeName: MonitoringController, Assembly-CSharp
+        m_MethodName: ExitPopUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &977837571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4587,7 +4599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5755473, g: 0.5755473, b: 0.5755473, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5061,6 +5073,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1020655330}
   - component: {fileID: 1020655332}
+  - component: {fileID: 1020655333}
+  - component: {fileID: 1020655334}
   - component: {fileID: 1020655331}
   m_Layer: 0
   m_Name: SFXManager
@@ -5096,7 +5110,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d51b691897d57941beb739c2b91c910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfxWindowsLaunch: {fileID: 1020655332}
+  sfx_WindowsStartup: {fileID: 1020655332}
+  sfx_NavigationStart: {fileID: 1020655333}
+  sfx_ErrorPopUp: {fileID: 1020655334}
 --- !u!82 &1020655332
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5106,10 +5122,202 @@ AudioSource:
   m_GameObject: {fileID: 1020655329}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1d5fd1c021d40774d8fe8efb9c7d66e0, type: 3}
+  OutputAudioMixerGroup: {fileID: 5244627000328352130, guid: 0e31c0f99dd836745a406d7c44f94c46, type: 2}
+  m_audioClip: {fileID: 8300000, guid: b5ba349124c8d1040a9868bf1d3f8dbd, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &1020655333
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020655329}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 7582363535278145268, guid: 0e31c0f99dd836745a406d7c44f94c46, type: 2}
+  m_audioClip: {fileID: 8300000, guid: ea12fe934e87e7c4497688e0d5e2f21e, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &1020655334
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020655329}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 5244627000328352130, guid: 0e31c0f99dd836745a406d7c44f94c46, type: 2}
+  m_audioClip: {fileID: 8300000, guid: ccc47eafd91a06c4e9f860e467dbd74b, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -6849,7 +7057,7 @@ VideoPlayer:
   - 1
   m_Url: 
   m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
+  m_DirectAudioMutes: 01
   m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
@@ -7957,7 +8165,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1658067860}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2080420622}
+        m_TargetAssemblyTypeName: MonitoringController, Assembly-CSharp
+        m_MethodName: ErrorPopUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1658067860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8916,7 +9136,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1988587323}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2080420622}
+        m_TargetAssemblyTypeName: MonitoringController, Assembly-CSharp
+        m_MethodName: ErrorPopUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1988587323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9357,10 +9589,10 @@ VideoPlayer:
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
-  - 1
+  - 0.1
   m_Url: 
   m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
+  m_DirectAudioMutes: 01
   m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
@@ -9413,14 +9645,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19d4643568eb54e4c8b52f06cc8a51db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBeforeLoad: 0.5
+  timeBeforeLoad: 2
   txt_Clocks:
   - {fileID: 1586742670}
   - {fileID: 784478330}
   - {fileID: 592304447}
-  screenSaver: {fileID: 0}
-  unlockScreen: {fileID: 0}
-  desk: {fileID: 0}
+  screenSaver: {fileID: 496367191}
+  unlockScreen: {fileID: 1930514777}
+  desk: {fileID: 1928140807}
 --- !u!114 &2080420622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9433,11 +9665,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 713e92e81d248f345ae4ce62f6d6722a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBeforeLoad: 0.1
+  timeBeforeLoad: 0.2
   monitoringSoftware: {fileID: 1792784573}
   planDownstairs: {fileID: 964986306}
   planUpstairs: {fileID: 1293528654}
-  errorPopUp: {fileID: 0}
   slid_TimeProgress: {fileID: 2025544489}
   txt_ElapsedTime: {fileID: 139311308}
   txt_RemainingTime: {fileID: 437434732}
@@ -9453,6 +9684,7 @@ MonoBehaviour:
   - {fileID: 1666357571}
   - {fileID: 721755349}
   - {fileID: 1309983073}
+  - {fileID: 2072839561}
   allClocks:
   - {fileID: 1629798542}
   - {fileID: 739742875}
@@ -9462,6 +9694,7 @@ MonoBehaviour:
   - {fileID: 293334734}
   nextButton: {fileID: 1756682932}
   previousButton: {fileID: 721306865}
+  errorPopUp: {fileID: 575635533}
 --- !u!1 &2089114254
 GameObject:
   m_ObjectHideFlags: 0

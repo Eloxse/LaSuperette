@@ -89,7 +89,7 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator DelayDeskConnection()
     {
-        _sfxManager.SfxWindowsLaunch.Play();
+        _sfxManager.Sfx_WindowsStartup.Play();
         yield return new WaitForSeconds(timeBeforeLoad);
 
         unlockScreen.SetActive(false);

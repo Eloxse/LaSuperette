@@ -15,7 +15,6 @@ public class MonitoringController : MonoBehaviour
     [Header("Monitoring Software")]
     [SerializeField] private GameObject monitoringSoftware;
     [SerializeField] private GameObject planDownstairs, planUpstairs;
-    [SerializeField] private GameObject errorPopUp;
 
     [Header("Video Manager")]
     [SerializeField] private Slider slid_TimeProgress;
@@ -27,6 +26,7 @@ public class MonitoringController : MonoBehaviour
     [SerializeField] private List<GameObject> allClocks;
     [SerializeField] private Button nextButton;
     [SerializeField] private Button previousButton;
+    [SerializeField] private GameObject errorPopUp;
 
     //Monitoring Software.
     private VideoPlayer _currentVideoPlayer;
@@ -40,6 +40,7 @@ public class MonitoringController : MonoBehaviour
 
     //Singleton.
     private static MonitoringController _instance;
+    private SFXManager _sfxManager;
 
     #endregion
 
@@ -63,6 +64,10 @@ public class MonitoringController : MonoBehaviour
 
     private void Start()
     {
+        //Singleton.
+        _sfxManager = SFXManager.Instance;
+
+        //Initialize video.
         InitiliazedVideo();
 
         //Initialize the slider.
@@ -99,6 +104,7 @@ public class MonitoringController : MonoBehaviour
 
     private IEnumerator DelayOpenSoftware()
     {
+        _sfxManager.Sfx_NavigationStart.Play();
         yield return new WaitForSeconds(timeBeforeLoad);
         monitoringSoftware.SetActive(true);
     }
@@ -227,7 +233,7 @@ public class MonitoringController : MonoBehaviour
         }
         else
         {
-            //Do nothing.
+            ErrorPopUp();
         }
     }
 
@@ -329,6 +335,27 @@ public class MonitoringController : MonoBehaviour
         {
             allClocks[_currentClockIndex].SetActive(true);
         }
+    }
+
+    /**
+     * <summary>
+     * Display error pop up.
+     * </summary>
+     */
+    public void ErrorPopUp()
+    {
+        _sfxManager.Sfx_ErrorPopUp.Play();
+        errorPopUp.SetActive(true);
+    }
+
+    /**
+     * <summary>
+     * Unable error pop up.
+     * </summary>
+     */
+    public void ExitPopUp()
+    {
+        errorPopUp.SetActive(false);
     }
 
     #endregion

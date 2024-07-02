@@ -4,8 +4,10 @@ public class SFXManager : MonoBehaviour
 {
     #region Variable
 
-    [Header("SFX")]
-    [SerializeField] private AudioSource sfxWindowsLaunch;
+    [Header("Windows Desk SFX")]
+    [SerializeField] private AudioSource sfx_WindowsStartup;
+    [SerializeField] private AudioSource sfx_NavigationStart;
+    [SerializeField] private AudioSource sfx_ErrorPopUp;
 
     //Singleton.
     private static SFXManager _instance;
@@ -14,8 +16,10 @@ public class SFXManager : MonoBehaviour
 
     #region Properties
 
-    //SFX.
-    public AudioSource SfxWindowsLaunch => sfxWindowsLaunch;
+    //Windows Desk SFX.
+    public AudioSource Sfx_WindowsStartup => sfx_WindowsStartup;
+    public AudioSource Sfx_NavigationStart => sfx_NavigationStart;
+    public AudioSource Sfx_ErrorPopUp => sfx_ErrorPopUp;
 
     //Singleton.
     public static SFXManager Instance => _instance;
