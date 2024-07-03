@@ -14,6 +14,7 @@ public class MonitoringController : MonoBehaviour
 
     [Header("Monitoring Software")]
     [SerializeField] private GameObject monitoringSoftware;
+    [SerializeField] private Button btn_VideoMonitoring;
     [SerializeField] private GameObject planDownstairs, planUpstairs;
 
     [Header("Video Manager")]
@@ -22,26 +23,25 @@ public class MonitoringController : MonoBehaviour
     [SerializeField] private GameObject vid_AudioVisualizer;
     [SerializeField] private List<GameObject> allVideos;
 
-    [Header("Int Video")]
-    [SerializeField] private Slider slid_TimeSlot;
-    [SerializeField] private GameObject vid_Hint;
-    [SerializeField] private int correctHintSlot;
+    [Header("Clock")]
+    [SerializeField] private List<GameObject> allClocks;
+    [SerializeField] private Button nextButton;
+    [SerializeField] private Button previousButton;
+    [SerializeField] private GameObject errorPopUp;
 
     //Monitoring Software.
     private VideoPlayer _currentVideoPlayer;
     private VideoPlayer _audioVisualizerPlayer;
 
-    //Hint Video.
-    private Dictionary<int, GameObject> _timeSlotToVideoMap;
-    private bool _isCorrect = false;
-    private GameObject _previousVideo;
-    private double _previousVideoTime;
+    //Video Manager.
+    private bool _hasPlayedTechnicalArea = false;
 
-    //Time Code.
-    private string _input;
+    //Clock.
+    private int _currentClockIndex = 0;
 
     //Singleton.
     private static MonitoringController _instance;
+    private SFXManager _sfxManager;
 
     #endregion
 
@@ -65,14 +65,22 @@ public class MonitoringController : MonoBehaviour
 
     private void Start()
     {
+        //Singleton.
+        _sfxManager = SFXManager.Instance;
+
+        //Initialize video.
         InitiliazedVideo();
-        InitializeTimeSlotToVideoMap();
 
         //Initialize the slider.
         if (slid_TimeProgress != null)
         {
             slid_TimeProgress.minValue = 0;
         }
+
+        //Initialize clock.
+        nextButton.onClick.AddListener(NextClock);
+        previousButton.onClick.AddListener(PreviousClock);
+        UpdateClockDisplay();
     }
 
     private void Update()
@@ -97,8 +105,12 @@ public class MonitoringController : MonoBehaviour
 
     private IEnumerator DelayOpenSoftware()
     {
+        _sfxManager.Sfx_NavigationStart.Play();
+        btn_VideoMonitoring.interactable = false;
         yield return new WaitForSeconds(timeBeforeLoad);
+
         monitoringSoftware.SetActive(true);
+        btn_VideoMonitoring.interactable = true;
     }
 
     /**
@@ -117,77 +129,33 @@ public class MonitoringController : MonoBehaviour
         planUpstairs.SetActive(true);
         planDownstairs.SetActive(false);
     }
+    
+    /**
+     * <summary>
+     * Display error pop up.
+     * </summary>
+     */
+    public void ErrorPopUp()
+    {
+        _sfxManager.Sfx_ErrorPopUp.Play();
+        errorPopUp.SetActive(true);
+        _currentVideoPlayer.Pause();
+    }
+
+    /**
+     * <summary>
+     * Unable error pop up.
+     * </summary>
+     */
+    public void ExitPopUp()
+    {
+        errorPopUp.SetActive(false);
+        _currentVideoPlayer.Play();
+    }
 
     #endregion
 
     #region Video Monitoring
-
-    /**
-     * <summary>
-     * Initialize the slider to react to the right answer.
-     * </summary>
-     */
-    private void InitializeTimeSlotToVideoMap()
-    {
-        _timeSlotToVideoMap = new Dictionary<int, GameObject>
-        {            
-            { 0, null }, // 00:00 - 02:00.
-            { 1, null }, // 02:00 - 04:00.
-            { 2, null }, // 04:00 - 06:00.
-            { 3, null }, // 06:00 - 08:00.
-            { 4, null }, // 08:00 - 10:00.
-            { 5, null }, // 10:00 - 12:00.
-            { 6, vid_Hint }, // 12:00 - 14:00.
-            { 7, null }, // 14:00 - 16:00.
-            { 8, null }, // 16:00 - 18:00.
-            { 9, null }, // 18:00 - 20:00.
-            { 10, null }, // 20:00 - 22:00.
-            { 11, null }  // 22:00 - 00:00.
-        };
-
-        // Set the hint video in the map based on the inspector.
-        if (_timeSlotToVideoMap.ContainsKey(correctHintSlot))
-        {
-            _timeSlotToVideoMap[correctHintSlot] = vid_Hint;
-        }
-    }
-
-    /**
-     * <summary>
-     * Method to be called when the slider value changes.
-     * </summary>
-     */
-    public void OnSliderValueChanged()
-    {
-        int selectedTimeSlot = Mathf.FloorToInt(slid_TimeSlot.value / 2);
-
-        if (_timeSlotToVideoMap.TryGetValue(selectedTimeSlot, out GameObject selectedVideo))
-        {
-            if (selectedVideo != null)
-            {
-                // Save the state of the previous video.
-                _previousVideo = selectedVideo;
-                _previousVideoTime = _currentVideoPlayer != null ? _currentVideoPlayer.time : 0;
-
-                // Play the selected video.
-                PlayVideo(selectedVideo);
-                _isCorrect = true;
-            }
-            else
-            {
-                if (_isCorrect)
-                {
-                    // Incorrect answer, resume the previous video.
-                    if (_isCorrect && _previousVideo != null)
-                    {
-                        PlayVideo(_previousVideo);
-                        _currentVideoPlayer.time = _previousVideoTime;
-                        _currentVideoPlayer.Play();
-                    }
-                }
-            }
-        }
-    }
 
     /**
      * <summary>
@@ -269,7 +237,6 @@ public class MonitoringController : MonoBehaviour
      * Make this functions accessible for buttons.
      * </summary>
      */
-    public void PlayVidTechnicalArea() => PlayVideo(allVideos.Find(v => v.name == "VID_TechnicalArea"));
     public void PlayVidStorage() => PlayVideo(allVideos.Find(v => v.name == "VID_Storage"));
     public void PlayVidHousehold() => PlayVideo(allVideos.Find(v => v.name == "VID_Household"));
     public void PlayVidLocker() => PlayVideo(allVideos.Find(v => v.name == "VID_Locker"));
@@ -278,6 +245,24 @@ public class MonitoringController : MonoBehaviour
     public void PlayVidStock() => PlayVideo(allVideos.Find(v => v.name == "VID_Stock"));
     public void PlayVidDesk() => PlayVideo(allVideos.Find(v => v.name == "VID_Desk"));
     public void PlayVidFridge() => PlayVideo(allVideos.Find(v => v.name == "VID_Fridge"));
+    public void PlayVidTechnicalArea()
+    {
+        _hasPlayedTechnicalArea = true;
+        PlayVideo(allVideos.Find(v => v.name == "VID_TechnicalArea"));
+    }
+    public void PlayVidHint()
+    {
+        //Play hint video only if the correct place has been chosen.
+        if (_hasPlayedTechnicalArea)
+        {
+            PlayVideo(allVideos.Find(v => v.name == "VID_Hint"));
+            _hasPlayedTechnicalArea = false;
+        }
+        else
+        {
+            ErrorPopUp();
+        }
+    }
 
     /**
      * <summary>
@@ -335,16 +320,48 @@ public class MonitoringController : MonoBehaviour
 
     #endregion
 
-    #region Time Code
+    #region Clock
 
     /**
      * <summary>
-     * Read any changes on input field.
+     * Button: Display next clock.
      * </summary>
      */
-    public void ReadStringInput(string inputEntry)
+    public void NextClock()
     {
-        _input = inputEntry;
+        _currentClockIndex = (_currentClockIndex + 1) % allClocks.Count;
+        UpdateClockDisplay();
+    }
+
+    /**
+     * <summary>
+     * Button: Display previous clock.
+     * </summary>
+     */
+    public void PreviousClock()
+    {
+        _currentClockIndex = (_currentClockIndex - 1 + allClocks.Count) % allClocks.Count;
+        UpdateClockDisplay();
+    }
+
+    /**
+     * <summary>
+     * Initialize clock method.
+     * </summary>
+     */
+    private void UpdateClockDisplay()
+    {
+        // Disable all clocks.
+        foreach (GameObject clock in allClocks)
+        {
+            clock.SetActive(false);
+        }
+
+        // Display actual clock.
+        if (allClocks.Count > 0)
+        {
+            allClocks[_currentClockIndex].SetActive(true);
+        }
     }
 
     #endregion
