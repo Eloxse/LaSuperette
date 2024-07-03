@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 using TMPro;
 
@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject screenSaver;
     [SerializeField] private GameObject unlockScreen;
     [SerializeField] private GameObject desk;
+    [SerializeField] private Button btn_Connection;
 
     //Singleton.
     private SFXManager _sfxManager;
@@ -90,10 +91,12 @@ public class UIManager : MonoBehaviour
     private IEnumerator DelayDeskConnection()
     {
         _sfxManager.Sfx_WindowsStartup.Play();
+        btn_Connection.interactable = false;
         yield return new WaitForSeconds(timeBeforeLoad);
 
         unlockScreen.SetActive(false);
         desk.SetActive(true);
+        btn_Connection.interactable = true;
     }
 
     #endregion

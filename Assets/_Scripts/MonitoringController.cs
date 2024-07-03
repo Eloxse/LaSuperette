@@ -14,6 +14,7 @@ public class MonitoringController : MonoBehaviour
 
     [Header("Monitoring Software")]
     [SerializeField] private GameObject monitoringSoftware;
+    [SerializeField] private Button btn_VideoMonitoring;
     [SerializeField] private GameObject planDownstairs, planUpstairs;
 
     [Header("Video Manager")]
@@ -105,8 +106,11 @@ public class MonitoringController : MonoBehaviour
     private IEnumerator DelayOpenSoftware()
     {
         _sfxManager.Sfx_NavigationStart.Play();
+        btn_VideoMonitoring.interactable = false;
         yield return new WaitForSeconds(timeBeforeLoad);
+
         monitoringSoftware.SetActive(true);
+        btn_VideoMonitoring.interactable = true;
     }
 
     /**
@@ -124,6 +128,29 @@ public class MonitoringController : MonoBehaviour
     {
         planUpstairs.SetActive(true);
         planDownstairs.SetActive(false);
+    }
+    
+    /**
+     * <summary>
+     * Display error pop up.
+     * </summary>
+     */
+    public void ErrorPopUp()
+    {
+        _sfxManager.Sfx_ErrorPopUp.Play();
+        errorPopUp.SetActive(true);
+        _currentVideoPlayer.Pause();
+    }
+
+    /**
+     * <summary>
+     * Unable error pop up.
+     * </summary>
+     */
+    public void ExitPopUp()
+    {
+        errorPopUp.SetActive(false);
+        _currentVideoPlayer.Play();
     }
 
     #endregion
@@ -335,27 +362,6 @@ public class MonitoringController : MonoBehaviour
         {
             allClocks[_currentClockIndex].SetActive(true);
         }
-    }
-
-    /**
-     * <summary>
-     * Display error pop up.
-     * </summary>
-     */
-    public void ErrorPopUp()
-    {
-        _sfxManager.Sfx_ErrorPopUp.Play();
-        errorPopUp.SetActive(true);
-    }
-
-    /**
-     * <summary>
-     * Unable error pop up.
-     * </summary>
-     */
-    public void ExitPopUp()
-    {
-        errorPopUp.SetActive(false);
     }
 
     #endregion
