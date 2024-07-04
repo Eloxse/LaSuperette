@@ -4,13 +4,24 @@ public class LanguageSelector : MonoBehaviour
 {
     #region Custom Method
 
+    /**
+     * <summary>
+     * Select language.
+     * </summary>
+     */
     public void SetLanguage(string languageCode)
     {
         LanguageManager.instance.LoadLocalizedText(languageCode + ".json");
+        Debug.Log("Text");
         PlayerPrefs.SetString("selectedLanguage", languageCode); 
         UpdateAllLocalizedTexts();
     }
 
+    /**
+     * <summary>
+     * Update text with language selected.
+     * </summary>
+     */
     private void UpdateAllLocalizedTexts()
     {
         LocalizedText[] localizedTexts = FindObjectsOfType<LocalizedText>();

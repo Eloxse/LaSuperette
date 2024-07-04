@@ -1,11 +1,11 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class LocalizedText : MonoBehaviour
 {
     #region Variable
 
-    public string key;
+    [SerializeField] private string key;
 
     #endregion
 
@@ -15,9 +15,20 @@ public class LocalizedText : MonoBehaviour
     {
         UpdateText();
     }
+
+    #endregion
+
+    #region Update Text
+
+    /**
+     * <summary>
+     * Update text with language selected.
+     * </summary>
+     */
     public void UpdateText()
     {
-        Text text = GetComponent<Text>();
+        TMP_Text text = GetComponent<TMP_Text>();
+
         if (text != null)
         {
             string localizedValue = LanguageManager.instance.GetLocalizedValue(key);
@@ -25,15 +36,8 @@ public class LocalizedText : MonoBehaviour
             {
                 text.text = localizedValue;
             }
-            else
-            {
-                Debug.LogWarning("Localized value not found for key: " + key);
-            }
-        }
-        else
-        {
-            Debug.LogError("Text component is null on " + gameObject.name);
         }
     }
+
     #endregion
 }

@@ -1,6 +1,4 @@
 using UnityEngine;
-
-#if UNITY_STANDALONE_WIN || UNITY_EDITOR
 using System;
 using System.Runtime.InteropServices;
 
@@ -35,17 +33,21 @@ public class WindowsEventSystem : MonoBehaviour
 
     #region Built-In Methods
 
-    /**
-     * <summary>
-     * This code intercept Alt+F4 command and do nothing on Windows OS.
-     * </summary>
-     */
     void Start()
     {
         hwnd = GetForegroundWindow();
         oldWndProc = SetWindowLongPtr(hwnd, GWL_WNDPROC, newWndProc);
     }
 
+    #endregion
+
+    #region Intercept Alt+F4
+
+    /**
+     * <summary>
+     * This code intercept Alt+F4 command and do nothing on Windows OS.
+     * </summary>
+     */
     private static IntPtr HookCallback(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam)
     {
         if (msg == WM_SYSCOMMAND && wParam.ToInt32() == SC_CLOSE)
@@ -68,4 +70,3 @@ public class WindowsEventSystem : MonoBehaviour
 
     #endregion
 }
-#endif

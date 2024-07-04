@@ -3,28 +3,37 @@ using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-#if UNITY_STANDALONE_WIN || UNITY_EDITOR
 
 public class WindowsKeyInterceptor : MonoBehaviour
 {
+    #region Variables
+
+    private static LowLevelKeyboardProc _proc = HookCallback;
+    private static IntPtr _hookID = IntPtr.Zero;
+
+    #endregion
+
+    #region Built-In Methods
+
+    private void OnEnable()
+    {
+        _hookID = SetHook(_proc);
+    }
+
+    private void OnDisable()
+    {
+        UnhookWindowsHookEx(_hookID);
+    }
+
+    #endregion
+
+    #region Intercept Windows key
+
     /**
      * <summary>
      * This code intercept windows command and do nothing on Windows OS.
      * </summary>
      */
-    private static LowLevelKeyboardProc _proc = HookCallback;
-    private static IntPtr _hookID = IntPtr.Zero;
-
-    void OnEnable()
-    {
-        _hookID = SetHook(_proc);
-    }
-
-    void OnDisable()
-    {
-        UnhookWindowsHookEx(_hookID);
-    }
-
     private static IntPtr SetHook(LowLevelKeyboardProc proc)
     {
         using (Process curProcess = Process.GetCurrentProcess())
@@ -69,5 +78,6 @@ public class WindowsKeyInterceptor : MonoBehaviour
 
     [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
     private static extern IntPtr GetModuleHandle(string lpModuleName);
+
+    #endregion
 }
-#endif

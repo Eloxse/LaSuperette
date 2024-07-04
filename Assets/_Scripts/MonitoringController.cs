@@ -237,16 +237,49 @@ public class MonitoringController : MonoBehaviour
      * Make this functions accessible for buttons.
      * </summary>
      */
-    public void PlayVidStorage() => PlayVideo(allVideos.Find(v => v.name == "VID_Storage"));
-    public void PlayVidHousehold() => PlayVideo(allVideos.Find(v => v.name == "VID_Household"));
-    public void PlayVidLocker() => PlayVideo(allVideos.Find(v => v.name == "VID_Locker"));
-    public void PlayVidSupermarket() => PlayVideo(allVideos.Find(v => v.name == "VID_Supermarket"));
-    public void PlayVidBar() => PlayVideo(allVideos.Find(v => v.name == "VID_Bar"));
-    public void PlayVidStock() => PlayVideo(allVideos.Find(v => v.name == "VID_Stock"));
-    public void PlayVidDesk() => PlayVideo(allVideos.Find(v => v.name == "VID_Desk"));
-    public void PlayVidFridge() => PlayVideo(allVideos.Find(v => v.name == "VID_Fridge"));
+    public void PlayVidStorage()
+    {
+        _audioVisualizerPlayer.Play();
+        PlayVideo(allVideos.Find(v => v.name == "VID_Storage"));
+    }
+    public void PlayVidHousehold()
+    {
+        _audioVisualizerPlayer.Play();
+        PlayVideo(allVideos.Find(v => v.name == "VID_Household"));
+    }
+    public void PlayVidLocker()
+    {
+        _audioVisualizerPlayer.Play();
+        PlayVideo(allVideos.Find(v => v.name == "VID_Locker"));
+    }
+    public void PlayVidSupermarket()
+    {
+        _audioVisualizerPlayer.Play();
+        PlayVideo(allVideos.Find(v => v.name == "VID_Supermarket"));
+    }
+    public void PlayVidBar()
+    {
+        _audioVisualizerPlayer.Play();
+        PlayVideo(allVideos.Find(v => v.name == "VID_Bar"));
+    }
+    public void PlayVidStock()
+    {
+        _audioVisualizerPlayer.Play();
+        PlayVideo(allVideos.Find(v => v.name == "VID_Stock"));
+    }
+    public void PlayVidDesk()
+    {
+        _audioVisualizerPlayer.Play();
+        PlayVideo(allVideos.Find(v => v.name == "VID_Desk"));
+    }
+    public void PlayVidFridge()
+    {
+        _audioVisualizerPlayer.Play();
+        PlayVideo(allVideos.Find(v => v.name == "VID_Fridge"));
+    }
     public void PlayVidTechnicalArea()
     {
+        _audioVisualizerPlayer.Play();
         _hasPlayedTechnicalArea = true;
         PlayVideo(allVideos.Find(v => v.name == "VID_TechnicalArea"));
     }
@@ -255,6 +288,7 @@ public class MonitoringController : MonoBehaviour
         //Play hint video only if the correct place has been chosen.
         if (_hasPlayedTechnicalArea)
         {
+            _audioVisualizerPlayer.Play();
             PlayVideo(allVideos.Find(v => v.name == "VID_Hint"));
             _hasPlayedTechnicalArea = false;
         }

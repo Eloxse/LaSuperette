@@ -2731,6 +2731,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 514297246}
+  - component: {fileID: 514297247}
   m_Layer: 0
   m_Name: BuildManager
   m_TagString: Untagged
@@ -2753,6 +2754,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 388454052}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &514297247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514297245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaca5841d71a3df4284e29663cf9b3c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &528191778
 GameObject:
   m_ObjectHideFlags: 0
@@ -4672,6 +4685,7 @@ GameObject:
   m_Component:
   - component: {fileID: 945167816}
   - component: {fileID: 945167815}
+  - component: {fileID: 945167817}
   m_Layer: 0
   m_Name: LanguageManager
   m_TagString: Untagged
@@ -4706,6 +4720,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 388454052}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &945167817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945167814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e842a7c972fd5844bae4a00164870690, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -6318,7 +6344,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: en
+          m_StringArgument: english
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1178827807
@@ -6916,7 +6942,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: fr
+          m_StringArgument: french
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1280644783
@@ -10214,7 +10240,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: nl
+          m_StringArgument: dutch
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1979640663
