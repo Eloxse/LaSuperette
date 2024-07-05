@@ -10876,7 +10876,6 @@ MonoBehaviour:
   - {fileID: 721755349}
   - {fileID: 1309983073}
   - {fileID: 2072839561}
-  - {fileID: 0}
   allClocks:
   - {fileID: 1629798542}
   - {fileID: 739742875}
