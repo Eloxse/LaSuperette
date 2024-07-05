@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 
 public class LanguageManager : MonoBehaviour
 {
@@ -24,13 +25,12 @@ public class LanguageManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            LoadLanguage();
         }
         else if (instance != this)
         {
             Destroy(gameObject);
         }
-
-        LoadLanguage();
     }
 
     #endregion
@@ -47,12 +47,12 @@ public class LanguageManager : MonoBehaviour
         _localizedText = new Dictionary<string, string>();
         string filePath = Path.Combine(Application.streamingAssetsPath, fileName);
 
-        if(File.Exists(filePath))
+        if (File.Exists(filePath))
         {
             string dataAsJson = File.ReadAllText(filePath);
             LocalizationData loadedData = JsonUtility.FromJson<LocalizationData>(dataAsJson);
 
-            for(int i = 0; i < loadedData.items.Length; i++)
+            for (int i = 0; i < loadedData.items.Length; i++)
             {
                 _localizedText.Add(loadedData.items[i].key, loadedData.items[i].value);
             }
@@ -75,7 +75,6 @@ public class LanguageManager : MonoBehaviour
         string languageCode = PlayerPrefs.GetString("selectedLanguage", "french"); // Default to French.
         LoadLocalizedText(languageCode + ".json");
     }
-
     #endregion
 }
 

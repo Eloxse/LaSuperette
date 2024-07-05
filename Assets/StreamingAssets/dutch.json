@@ -1,17 +1,18 @@
 {
-    "basket": "Mand",
-    "connection": "Inloggen",
-    "desk": "Bureau",
-    "error": "Fout: Ontbrekend bestand",
-    "fridge": "Koelkast",
-    "household": "Onderhoudskamer",
-    "locker": "Kluisje",
-    "research": "Zoeken",
-    "source": "Source",
-    "stock": "Opslagruimte",
-    "storage": "Afgifte van pakketten",
-    "supermarket": "Gemakswinkel",
-    "technicalArea": "Technisch gebied",
-    "tryAgain": "Probeer het nog eens",
-    "wednesday october 25, 2028": "woensdag 25 oktober 2028"
+    "items": [
+        { "key": "basket", "value": "Mand" },
+        { "key": "connection", "value": "Inloggen" },
+        { "key": "desk", "value": "Bureau" },
+        { "key": "error", "value": "Fout: Ontbrekend bestand" },
+        { "key": "fridge", "value": "Koelkast" },
+        { "key": "household", "value": "Onderhoudskamer" },
+        { "key": "locker", "value": "Kluisje" },
+        { "key": "research", "value": "Zoeken" },
+        { "key": "stock", "value": "Opslagruimte" },
+        { "key": "storage", "value": "Afgifte van pakketten" },
+        { "key": "supermarket", "value": "Gemakswinkel" },
+        { "key": "technicalArea", "value": "Technisch gebied" },
+        { "key": "tryAgain", "value": "Probeer het nog eens" },
+        { "key": "wednesday october 25, 2028", "value": "woensdag 25 oktober 2028" }
+    ]
 }

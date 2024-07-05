@@ -289,7 +289,7 @@ public class MonitoringController : MonoBehaviour
         if (_hasPlayedTechnicalArea)
         {
             _audioVisualizerPlayer.Play();
-            PlayVideo(allVideos.Find(v => v.name == "VID_Hint"));
+            PlayVideo(allVideos.Find(v => v.name == "VID_HintNorbert"));
             _hasPlayedTechnicalArea = false;
         }
         else

@@ -1,17 +1,18 @@
 {
-    "basket": "Basket",
-    "connection": "Connection",
-    "desk": "Desk",
-    "error": "Error: Missing file",
-    "fridge": "Fridge",
-    "household": "Maintenance room",
-    "locker": "Locker",
-    "research": "Research",
-    "source": "Source",
-    "stock": "Storage area",
-    "storage": "Parcel drop-off",
-    "supermarket": "Supermarket",
-    "technicalArea": "Technical area",
-    "tryAgain": "Try again",
-    "wednesday october 25, 2028": "wednesday october 25, 2028"
+    "items": [
+        { "key": "basket", "value": "Basket" },
+        { "key": "connection", "value": "Connection" },
+        { "key": "desk", "value": "Desk" },
+        { "key": "error", "value": "Error: Missing file" },
+        { "key": "fridge", "value": "Fridge" },
+        { "key": "household", "value": "Maintenance room" },
+        { "key": "locker", "value": "Locker" },
+        { "key": "research", "value": "Research" },
+        { "key": "stock", "value": "Storage area" },
+        { "key": "storage", "value": "Parcel drop-off" },
+        { "key": "supermarket", "value": "Supermarket" },
+        { "key": "technicalArea", "value": "Technical area" },
+        { "key": "tryAgain", "value": "Try again" },
+        { "key": "wednesday october 25, 2028", "value": "wednesday october 25, 2028" }
+    ]
 }

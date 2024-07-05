@@ -1,17 +1,18 @@
 {
-    "basket": "Corbeille",
-    "connection": "Se connecter",
-    "desk": "Bureau",
-    "error": "Erreur: Fichier manquant",
-    "fridge": "Réfrigérateur",
-    "household": "Local d'entretien",
-    "locker": "Casiers",
-    "research": "Rechercher",
-    "source": "Source",
-    "stock": "Zone de stockage",
-    "storage": "Dépôt de colis",
-    "supermarket": "Supérette",
-    "technicalArea": "Local technique",
-    "tryAgain": "Réessayer",
-    "wednesday october 25, 2028": "mercredi 25 octobre 2028"
+    "items": [
+        { "key": "basket", "value": "Corbeille" },
+        { "key": "connection", "value": "Se connecter" },
+        { "key": "desk", "value": "Bureau" },
+        { "key": "error", "value": "Erreur: Fichier manquant" },
+        { "key": "fridge", "value": "Réfrigérateur" },
+        { "key": "household", "value": "Local d'entretien" },
+        { "key": "locker", "value": "Casiers" },
+        { "key": "research", "value": "Rechercher" },
+        { "key": "stock", "value": "Zone de stockage" },
+        { "key": "storage", "value": "Dépôt de colis" },
+        { "key": "supermarket", "value": "Supérette" },
+        { "key": "technicalArea", "value": "Local technique" },
+        { "key": "tryAgain", "value": "Réessayer" },
+        { "key": "wednesday october 25, 2028", "value": "mercredi 25 octobre 2028" }
+    ]
 }

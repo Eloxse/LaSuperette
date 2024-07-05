@@ -12,8 +12,7 @@ public class LanguageSelector : MonoBehaviour
     public void SetLanguage(string languageCode)
     {
         LanguageManager.instance.LoadLocalizedText(languageCode + ".json");
-        Debug.Log("Text");
-        PlayerPrefs.SetString("selectedLanguage", languageCode); 
+        PlayerPrefs.SetString("selectedLanguage", languageCode);
         UpdateAllLocalizedTexts();
     }
 
