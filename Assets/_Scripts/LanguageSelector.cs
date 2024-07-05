@@ -4,6 +4,8 @@ public class LanguageSelector : MonoBehaviour
 {
     #region Custom Method
 
+    //Appeler la fonction SetLanguage par la Quuen Board.
+
     /**
      * <summary>
      * Select language.

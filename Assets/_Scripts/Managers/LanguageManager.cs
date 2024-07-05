@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using System;
 
 public class LanguageManager : MonoBehaviour
 {
@@ -24,6 +23,13 @@ public class LanguageManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+
+            //Detached gameObject from its parent.
+            if (transform.parent != null)
+            {
+                transform.SetParent(null);
+            }
+
             DontDestroyOnLoad(gameObject);
             LoadLanguage();
         }

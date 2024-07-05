@@ -25,8 +25,7 @@ public class MonitoringController : MonoBehaviour
 
     [Header("Clock")]
     [SerializeField] private List<GameObject> allClocks;
-    [SerializeField] private Button nextButton;
-    [SerializeField] private Button previousButton;
+    [SerializeField] private Button nextButton, previousButton;
     [SerializeField] private GameObject errorPopUp;
 
     //Monitoring Software.
@@ -35,6 +34,7 @@ public class MonitoringController : MonoBehaviour
 
     //Video Manager.
     private bool _hasPlayedTechnicalArea = false;
+    private bool _isHintPlanet = false;
 
     //Clock.
     private int _currentClockIndex = 0;
@@ -288,9 +288,20 @@ public class MonitoringController : MonoBehaviour
         //Play hint video only if the correct place has been chosen.
         if (_hasPlayedTechnicalArea)
         {
-            _audioVisualizerPlayer.Play();
-            PlayVideo(allVideos.Find(v => v.name == "VID_HintNorbert"));
-            _hasPlayedTechnicalArea = false;
+            if (_isHintPlanet)
+            {
+                //Play video of planets.
+                _audioVisualizerPlayer.Play();
+                PlayVideo(allVideos.Find(v => v.name == "VID_HintPlanet"));
+                _isHintPlanet = false;
+            }
+            else
+            {
+                //Play video of Norbert.
+                _audioVisualizerPlayer.Play();
+                PlayVideo(allVideos.Find(v => v.name == "VID_HintNorbert"));
+                _hasPlayedTechnicalArea = false;
+            }
         }
         else
         {
