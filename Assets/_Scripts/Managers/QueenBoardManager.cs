@@ -2,8 +2,9 @@ using UnityEngine;
 using System.Net.Sockets;
 using System.IO;
 using System.Text;
+using System.Collections;
 
-public class QueenConnection : MonoBehaviour
+public class QueenBoardManager : MonoBehaviour
 {
     private TcpClient client;
     private StreamReader reader;
@@ -13,9 +14,12 @@ public class QueenConnection : MonoBehaviour
     public int port = 4444; // Port par défaut
     public string agentName = "Norbert"; // Nom de l'agent à définir
 
+    private string[] variables = { "int_alpha", "int_bravo", "int_charlie", "int_delta", "int_echo" };
+
     void Start()
     {
         ConnectToServer();
+        StartCoroutine(CheckVariablesPeriodically());
     }
 
     void ConnectToServer()
@@ -65,6 +69,63 @@ public class QueenConnection : MonoBehaviour
         {
             Debug.LogError("IOException: " + e.Message);
         }
+    }
+
+    IEnumerator CheckVariablesPeriodically()
+    {
+        while (true)
+        {
+            foreach (var variable in variables)
+            {
+                CheckVariable(variable);
+            }
+            yield return new WaitForSeconds(5); // Attendre 5 secondes avant de vérifier à nouveau
+        }
+    }
+
+    void CheckVariable(string variable)
+    {
+        SendCommand($"get var.{variable}.state");
+        string response = reader.ReadLine();
+        ProcessVariableResponse(variable, response);
+    }
+
+    void ProcessVariableResponse(string variable, string response)
+    {
+        if (response.Contains("status='ok'"))
+        {
+            int value;
+            if (int.TryParse(response.Split('>')[1].Split('<')[0], out value))
+            {
+                int firstDigit = value / 10;
+                int secondDigit = value % 10;
+
+                if (secondDigit == 2)
+                {
+                    switch (firstDigit)
+                    {
+                        case 0:
+                            HandleLanguageChange(variable, "french");
+                            break;
+                        case 1:
+                            HandleLanguageChange(variable, "english");
+                            break;
+                        case 2:
+                            HandleLanguageChange(variable, "dutch");
+                            break;
+                        default:
+                            Debug.Log($"Variable {variable} has an unassigned language code: {firstDigit}{secondDigit}");
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    void HandleLanguageChange(string variable, string language)
+    {
+        Debug.Log($"Variable {variable} indicates language: {language}");
+        // Implémenter la logique souhaitée ici en fonction de la détection du langage
     }
 
     void OnApplicationQuit()

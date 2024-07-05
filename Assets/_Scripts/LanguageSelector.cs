@@ -2,6 +2,20 @@ using UnityEngine;
 
 public class LanguageSelector : MonoBehaviour
 {
+    public static LanguageSelector instance;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     #region Custom Method
 
     //Appeler la fonction SetLanguage par la Quuen Board.
@@ -11,26 +25,7 @@ public class LanguageSelector : MonoBehaviour
      * Select language.
      * </summary>
      */
-    public void SetLanguage(string languageCode)
-    {
-        LanguageManager.instance.LoadLocalizedText(languageCode + ".json");
-        PlayerPrefs.SetString("selectedLanguage", languageCode);
-        UpdateAllLocalizedTexts();
-    }
 
-    /**
-     * <summary>
-     * Update text with language selected.
-     * </summary>
-     */
-    private void UpdateAllLocalizedTexts()
-    {
-        LocalizedText[] localizedTexts = FindObjectsOfType<LocalizedText>();
-        foreach (LocalizedText localizedText in localizedTexts)
-        {
-            localizedText.UpdateText();
-        }
-    }
 
     #endregion
 }
