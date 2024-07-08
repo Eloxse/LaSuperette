@@ -3,7 +3,7 @@ using System.Net.Sockets;
 using System.IO;
 using System.Text;
 
-public class QueenBoardManager : MonoBehaviour
+public class Test : MonoBehaviour
 {
     #region Variables
 
@@ -11,7 +11,7 @@ public class QueenBoardManager : MonoBehaviour
     [SerializeField] private string serverIp = "127.0.0.1";
     [SerializeField] private int port = 4444; // Default port.
 
-    // Reference to LanguageSelector
+    // Reference to LanguageSelector.
     [Header("Language Selector")]
     [SerializeField] private LanguageSelector languageSelector;
 
@@ -32,7 +32,7 @@ public class QueenBoardManager : MonoBehaviour
 
     private void Update()
     {
-        ReceiveLanguage();
+        ReceiveMessage();
     }
 
     private void OnApplicationQuit()
@@ -54,7 +54,7 @@ public class QueenBoardManager : MonoBehaviour
         }
         catch (SocketException e)
         {
-            Debug.Log("SocketException: " + e.Message);
+            Debug.LogError("SocketException: " + e.Message);
         }
         catch (IOException e)
         {
@@ -75,7 +75,7 @@ public class QueenBoardManager : MonoBehaviour
         }
         catch (IOException e)
         {
-            Debug.Log("IOException: " + e.Message);
+            Debug.LogError("IOException: " + e.Message);
         }
     }
 
@@ -96,7 +96,7 @@ public class QueenBoardManager : MonoBehaviour
 
     #region Custom Methods
 
-    private void ReceiveLanguage()
+    private void ReceiveMessage()
     {
         if (_client != null && _client.Connected)
         {
@@ -112,96 +112,87 @@ public class QueenBoardManager : MonoBehaviour
                         message = message.Trim();
                         string[] parts = message.Split('=');
 
-                        if (parts.Length == 2)
+                        if (message.StartsWith("<response") && message.EndsWith("</response>"))
                         {
-                            Debug.Log("OUI");
-                            string variableName = parts[0].Trim();
-                            string valueStr = parts[1].Trim();
-                            Debug.Log("Parsed variable: " + variableName + ", value: " + valueStr);
-
-                            if (int.TryParse(valueStr, out int value))
-                            {
-                                // Vérifie si c'est la variable int_alpha
-                                if (variableName == "int_alpha")
-                                {
-                                    Debug.Log("Changing language based on value of int_alpha: " + value);
-                                    CheckAndSetLanguage(value);
-                                }
-                                else
-                                {
-                                    Debug.Log("Received message for variable: " + variableName + " with value: " + value);
-                                }
-                            }
-                            else
-                            {
-                                Debug.Log("Failed to parse value: " + valueStr);
-                            }
+                            ParseVariableMessage(message);
                         }
                         else
                         {
-                            Debug.Log("Invalid message format: " + message);
+                            ParseXmlMessage(message);
                         }
                     }
                 }
             }
             catch (IOException e)
             {
-                Debug.Log("IOException: " + e.Message);
+                Debug.LogError("IOException: " + e.Message);
             }
         }
-
     }
 
-    private void CheckAndSetLanguage(int value)
+    private void ParseXmlMessage(string message)
     {
-        string valueStr = value.ToString();
-        Debug.Log("CheckAndSetLanguage called with value: " + valueStr);
-
-        if (valueStr.Length < 2)
+        try
         {
-            Debug.Log("Value length is less than 2, returning");
-            return;
+            int typeStart = message.IndexOf("type='") + 6;
+            int typeEnd = message.IndexOf("'", typeStart);
+            string type = message.Substring(typeStart, typeEnd - typeStart);
+
+            int nameStart = message.IndexOf("name='") + 6;
+            int nameEnd = message.IndexOf("'", nameStart);
+            string name = message.Substring(nameStart, nameEnd - nameStart);
+
+            string content = message.Substring(message.IndexOf(">") + 1);
+            content = content.Substring(0, content.IndexOf("</response>"));
         }
-
-        char firstChar = valueStr[0];
-        char secondChar = valueStr[1];
-
-        Debug.Log("FirstChar: " + firstChar + ", SecondChar: " + secondChar);
-
-        if (secondChar == '2')
+        catch (System.Exception e)
         {
-            switch (firstChar)
+            Debug.LogError("Failed to parse XML message: " + e.Message);
+        }
+    }
+
+    private void ParseVariableMessage(string message)
+    {
+        string[] parts = message.Split('=');
+            Debug.Log("OUI");
+        if (parts.Length == 2)
+        {
+            string variableName = parts[0].Trim();
+            string valueStr = parts[1].Trim();
+
+            if (int.TryParse(valueStr, out int value))
             {
-                case '0':
-                    SetLanguage("french");
-                    break;
-                case '1':
-                    SetLanguage("english");
-                    break;
-                case '2':
-                    SetLanguage("dutch");
-                    break;
-                default:
-                    Debug.Log("No action for firstChar: " + firstChar);
-                    break;
+                Debug.Log("Received message for variable: " + variableName + " with value: " + value);
+
+                switch (variableName)
+                {
+                    case "int_alpha":
+                        Debug.Log("Processing int_alpha: " + value);
+                        // Example action: Set language to English if int_alpha is 1
+                        if (value == 1)
+                        {
+                            SetLanguage("english");
+                        }
+                        break;
+                    case "int_bravo":
+                        Debug.Log("Processing int_bravo: " + value);
+                        break;
+                    case "int_charlie":
+                        Debug.Log("Processing int_charlie: " + value);
+                        break;
+                    default:
+                        Debug.Log("Unknown variable: " + variableName);
+                        break;
+                }
+            }
+            else
+            {
+                Debug.LogError("Failed to parse value: " + valueStr);
             }
         }
         else
         {
-            Debug.Log("SecondChar is not 2, no action taken");
-        }
-    }
-
-    /**
-     * <summary>
-     * Set language.
-     * </summary>
-     */
-    private void SetLanguage(string languageCode)
-    {
-        if (languageSelector != null)
-        {
-            languageSelector.SetLanguage(languageCode);
+            Debug.LogError("Invalid message format: " + message);
         }
     }
 
@@ -209,7 +200,6 @@ public class QueenBoardManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(message))
         {
-            Debug.Log("ui");
             Debug.Log("Message is null or empty");
             return;
         }
@@ -221,6 +211,18 @@ public class QueenBoardManager : MonoBehaviour
             sb.Append($"[{(int)c} '{c}'] ");
         }
         Debug.Log(sb.ToString());
+    }
+
+    private void SetLanguage(string languageCode)
+    {
+        if (languageSelector != null)
+        {
+            languageSelector.SetLanguage(languageCode);
+        }
+        else
+        {
+            Debug.LogError("LanguageSelector is not set.");
+        }
     }
 
     #endregion
