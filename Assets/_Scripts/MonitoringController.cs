@@ -249,9 +249,8 @@ public class MonitoringController : MonoBehaviour
     public void PlayVidHousehold()
     {
         _audioVisualizerPlayer.Play();
-        _isHint = true;
-        _hasPlayedHousehold = true;
         PlayVideo(allVideos.Find(v => v.name == "VID_Household"));
+        _hasPlayedHousehold = true;
     }
     public void PlayVidLocker()
     {
@@ -286,11 +285,11 @@ public class MonitoringController : MonoBehaviour
     public void PlayVidTechnicalArea()
     {
         _audioVisualizerPlayer.Play();
+        PlayVideo(allVideos.Find(v => v.name == "VID_TechnicalArea"));
         _isHint = true;
         _hasPlayedTechnicalArea = true;
-        PlayVideo(allVideos.Find(v => v.name == "VID_TechnicalArea"));
     }
-    public void PlayVidHint()
+    public void HintNorbert()
     {
         //Activate error pop up.
         if (_isHint)
@@ -314,13 +313,25 @@ public class MonitoringController : MonoBehaviour
                     _hasPlayedTechnicalArea = false;
                 }
             }
-        
-            if (_hasPlayedHousehold || _isHintNorbertTools)
+        }
+        else
+        {
+            ErrorPopUp();
+        }
+    }
+    public void HintNorbertTools()
+    {
+        //Activate error pop up.
+        if (_isHintNorbertTools)
+        {
+            _audioVisualizerPlayer.Play();
+            _isHint = false;
+
+            if (_hasPlayedHousehold)
             {
                 //Play video of Norbert with tools if player is efficient.
+                Debug.Log("errrrr");
                 PlayVideo(allVideos.Find(v => v.name == "VID_HintNorbertTools"));
-                vid_HintNorbert.SetActive(false);
-                vid_HintPlanet.SetActive(false);
                 _hasPlayedHousehold = false;
                 _isHintNorbertTools = false;
             }
