@@ -11,7 +11,7 @@ public class QueenBoardManager : MonoBehaviour
     [SerializeField] private string serverIp = "127.0.0.1";
     [SerializeField] private int port = 4444; // Default port.
 
-    // Reference to LanguageSelector
+    // Reference to LanguageSelector.
     [Header("Language Selector")]
     [SerializeField] private LanguageSelector languageSelector;
 
@@ -28,6 +28,10 @@ public class QueenBoardManager : MonoBehaviour
     {
         ConnectToServer();
         SendGetCommand("int_alpha");
+        SendGetCommand("int_bravo");
+        SendGetCommand("int_charlie");
+        SendGetCommand("int_delta");
+        SendGetCommand("int_echo");
     }
 
     private void Update()
@@ -110,36 +114,14 @@ public class QueenBoardManager : MonoBehaviour
                     if (!string.IsNullOrEmpty(message))
                     {
                         message = message.Trim();
-                        string[] parts = message.Split('=');
 
-                        if (parts.Length == 2)
+                        if (message.StartsWith("<response") && message.EndsWith("</response>"))
                         {
-                            Debug.Log("OUI");
-                            string variableName = parts[0].Trim();
-                            string valueStr = parts[1].Trim();
-                            Debug.Log("Parsed variable: " + variableName + ", value: " + valueStr);
-
-                            if (int.TryParse(valueStr, out int value))
-                            {
-                                // Vérifie si c'est la variable int_alpha
-                                if (variableName == "int_alpha")
-                                {
-                                    Debug.Log("Changing language based on value of int_alpha: " + value);
-                                    CheckAndSetLanguage(value);
-                                }
-                                else
-                                {
-                                    Debug.Log("Received message for variable: " + variableName + " with value: " + value);
-                                }
-                            }
-                            else
-                            {
-                                Debug.Log("Failed to parse value: " + valueStr);
-                            }
+                            ParseVariableMessage(message);
                         }
                         else
                         {
-                            Debug.Log("Invalid message format: " + message);
+                            ParseXmlMessage(message);
                         }
                     }
                 }
@@ -152,10 +134,68 @@ public class QueenBoardManager : MonoBehaviour
 
     }
 
-    private void CheckAndSetLanguage(int value)
+    private void ParseXmlMessage(string message)
+    {
+        try
+        {
+            int typeStart = message.IndexOf("type='") + 6;
+            int typeEnd = message.IndexOf("'", typeStart);
+            string type = message.Substring(typeStart, typeEnd - typeStart);
+
+            int nameStart = message.IndexOf("name='") + 6;
+            int nameEnd = message.IndexOf("'", nameStart);
+            string name = message.Substring(nameStart, nameEnd - nameStart);
+
+            string content = message.Substring(message.IndexOf(">") + 1);
+            content = content.Substring(0, content.IndexOf("</response>"));
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Failed to parse XML message: " + e.Message);
+        }
+    }
+
+    private void ParseVariableMessage(string message)
+    {
+        string[] parts = message.Split('=');
+
+        if (parts.Length == 2)
+        {
+            string variableName = parts[0].Trim();
+            string valueStr = parts[1].Trim();
+
+            if (int.TryParse(valueStr, out int value))
+            {
+                Debug.Log("Received message for variable: " + variableName + " with value: " + value);
+                switch (variableName)
+                {
+                    case "int_alpha":
+                    case "int_bravo":
+                    case "int_charlie":
+                    case "int_delta":
+                    case "int_echo":
+                        CheckAndSetLanguage(variableName, value);
+                        break;
+                    default:
+                        Debug.Log("Unknown variable: " + variableName);
+                        break;
+                }
+            }
+            else
+            {
+                Debug.LogError("Failed to parse value: " + valueStr);
+            }
+        }
+        else
+        {
+            Debug.LogError("Invalid message format: " + message);
+        }
+    }
+
+    private void CheckAndSetLanguage(string team, int value)
     {
         string valueStr = value.ToString();
-        Debug.Log("CheckAndSetLanguage called with value: " + valueStr);
+        Debug.Log($"Processing {team} with value: {valueStr}");
 
         if (valueStr.Length < 2)
         {
@@ -165,30 +205,23 @@ public class QueenBoardManager : MonoBehaviour
 
         char firstChar = valueStr[0];
         char secondChar = valueStr[1];
+        Debug.Log($"FirstChar: {firstChar}, SecondChar: {secondChar}");
 
-        Debug.Log("FirstChar: " + firstChar + ", SecondChar: " + secondChar);
-
-        if (secondChar == '2')
+        string language = secondChar switch
         {
-            switch (firstChar)
-            {
-                case '0':
-                    SetLanguage("french");
-                    break;
-                case '1':
-                    SetLanguage("english");
-                    break;
-                case '2':
-                    SetLanguage("dutch");
-                    break;
-                default:
-                    Debug.Log("No action for firstChar: " + firstChar);
-                    break;
-            }
+            '0' => "english",
+            '1' => "french",
+            '2' => "dutch",
+            _ => null
+        };
+
+        if (language != null)
+        {
+            SetLanguage(language);
         }
         else
         {
-            Debug.Log("SecondChar is not 2, no action taken");
+            Debug.LogError("Invalid language value: " + secondChar);
         }
     }
 
@@ -209,7 +242,6 @@ public class QueenBoardManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(message))
         {
-            Debug.Log("ui");
             Debug.Log("Message is null or empty");
             return;
         }
