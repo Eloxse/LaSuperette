@@ -1702,7 +1702,6 @@ Transform:
   - {fileID: 2080420620}
   - {fileID: 1020655330}
   - {fileID: 945167816}
-  - {fileID: 1419527666}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &394957665
@@ -7551,53 +7550,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: stock
---- !u!1 &1419527665
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1419527666}
-  - component: {fileID: 1419527667}
-  m_Layer: 0
-  m_Name: QueenBoardManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1419527666
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1419527665}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 388454052}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1419527667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1419527665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b64af251b6f3aec48ace4ed0882a2bdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serverIp: 127.0.0.1
-  port: 4444
-  agentName: Norbert
 --- !u!1 &1426061936
 GameObject:
   m_ObjectHideFlags: 0
