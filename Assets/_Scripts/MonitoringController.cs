@@ -20,7 +20,7 @@ public class MonitoringController : MonoBehaviour
     [Header("Video Manager")]
     [SerializeField] private Slider slid_TimeProgress;
     [SerializeField] private TextMeshProUGUI txt_ElapsedTime, txt_RemainingTime;
-    [SerializeField] private GameObject vid_AudioVisualizer;
+    [SerializeField] private GameObject vid_AudioVisualizer, vid_hints;
     [SerializeField] private List<GameObject> allVideos;
 
     [Header("Clock")]
@@ -33,8 +33,11 @@ public class MonitoringController : MonoBehaviour
     private VideoPlayer _audioVisualizerPlayer;
 
     //Video Manager.
+    private bool _isHint = false;
     private bool _hasPlayedTechnicalArea = false;
+    private bool _hasPlayedHousehold = false;
     private bool _isHintPlanet = false;
+    private bool _isHintNorbertTools = false;
 
     //Clock.
     private int _currentClockIndex = 0;
@@ -140,6 +143,7 @@ public class MonitoringController : MonoBehaviour
         _sfxManager.Sfx_ErrorPopUp.Play();
         errorPopUp.SetActive(true);
         _currentVideoPlayer.Pause();
+        _audioVisualizerPlayer.Pause();
     }
 
     /**
@@ -245,6 +249,8 @@ public class MonitoringController : MonoBehaviour
     public void PlayVidHousehold()
     {
         _audioVisualizerPlayer.Play();
+        _isHint = true;
+        _hasPlayedHousehold = true;
         PlayVideo(allVideos.Find(v => v.name == "VID_Household"));
     }
     public void PlayVidLocker()
@@ -280,27 +286,42 @@ public class MonitoringController : MonoBehaviour
     public void PlayVidTechnicalArea()
     {
         _audioVisualizerPlayer.Play();
+        _isHint = true;
         _hasPlayedTechnicalArea = true;
         PlayVideo(allVideos.Find(v => v.name == "VID_TechnicalArea"));
     }
     public void PlayVidHint()
     {
-        //Play hint video only if the correct place has been chosen.
-        if (_hasPlayedTechnicalArea)
+        //Activate error pop up.
+        if (_isHint)
         {
-            if (_isHintPlanet)
+            _audioVisualizerPlayer.Play();
+            _isHint = false;
+
+            //Play hint video only if the correct place has been chosen.
+            if (_hasPlayedTechnicalArea)
             {
-                //Play video of planets.
-                _audioVisualizerPlayer.Play();
-                PlayVideo(allVideos.Find(v => v.name == "VID_HintPlanet"));
-                _isHintPlanet = false;
+                if (_isHintPlanet)
+                {
+                    //Play video of planets.
+                    PlayVideo(allVideos.Find(v => v.name == "VID_HintPlanet"));
+                    _isHintPlanet = false;
+                }
+                else
+                {
+                    //Play video of Norbert.
+                    PlayVideo(allVideos.Find(v => v.name == "VID_HintNorbert"));
+                    _hasPlayedTechnicalArea = false;
+                }
             }
-            else
+        
+            if (_hasPlayedHousehold || _isHintNorbertTools)
             {
-                //Play video of Norbert.
-                _audioVisualizerPlayer.Play();
-                PlayVideo(allVideos.Find(v => v.name == "VID_HintNorbert"));
-                _hasPlayedTechnicalArea = false;
+                //Play video of Norbert with tools if player is efficient.
+                PlayVideo(allVideos.Find(v => v.name == "VID_HintNorbertTools"));
+                vid_hints.SetActive(false);
+                _hasPlayedHousehold = false;
+                _isHintNorbertTools = false;
             }
         }
         else
@@ -407,6 +428,32 @@ public class MonitoringController : MonoBehaviour
         {
             allClocks[_currentClockIndex].SetActive(true);
         }
+    }
+
+    #endregion
+
+    #region Queen Board Command
+
+    /**
+     * <summary>
+     * This function will be called by Queen board if player is efficient.
+     * It will play a specific hint video rather than the actual hint video.
+     * </summary>
+     */
+    public void PlayPlanetVideo()
+    {
+        _isHintPlanet = true;
+    }
+
+    /**
+     * <summary>
+     * This function will be called by Queen board if player is efficient.
+     * It will play an additional hint video.
+     * </summary>
+     */
+    public void PlayNorbertToolsVideo()
+    {
+        _isHintNorbertTools = true;
     }
 
     #endregion
