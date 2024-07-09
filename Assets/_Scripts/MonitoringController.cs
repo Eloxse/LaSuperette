@@ -20,7 +20,7 @@ public class MonitoringController : MonoBehaviour
     [Header("Video Manager")]
     [SerializeField] private Slider slid_TimeProgress;
     [SerializeField] private TextMeshProUGUI txt_ElapsedTime, txt_RemainingTime;
-    [SerializeField] private GameObject vid_AudioVisualizer, vid_hints;
+    [SerializeField] private GameObject vid_AudioVisualizer, vid_HintNorbert, vid_HintPlanet;
     [SerializeField] private List<GameObject> allVideos;
 
     [Header("Clock")]
@@ -319,7 +319,8 @@ public class MonitoringController : MonoBehaviour
             {
                 //Play video of Norbert with tools if player is efficient.
                 PlayVideo(allVideos.Find(v => v.name == "VID_HintNorbertTools"));
-                vid_hints.SetActive(false);
+                vid_HintNorbert.SetActive(false);
+                vid_HintPlanet.SetActive(false);
                 _hasPlayedHousehold = false;
                 _isHintNorbertTools = false;
             }

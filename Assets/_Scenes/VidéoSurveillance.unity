@@ -10125,7 +10125,8 @@ MonoBehaviour:
   txt_ElapsedTime: {fileID: 139311308}
   txt_RemainingTime: {fileID: 437434732}
   vid_AudioVisualizer: {fileID: 1451008961}
-  vid_hints: {fileID: 1309983073}
+  vid_HintNorbert: {fileID: 1309983073}
+  vid_HintPlanet: {fileID: 1336073474}
   allVideos:
   - {fileID: 1740838954}
   - {fileID: 1426061936}
