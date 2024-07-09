@@ -27,6 +27,7 @@ public class QueenBoardManager : MonoBehaviour
     private void Start()
     {
         ConnectToServer();
+        
         SendGetCommand("int_alpha");
         SendGetCommand("int_bravo");
         SendGetCommand("int_charlie");
@@ -98,7 +99,7 @@ public class QueenBoardManager : MonoBehaviour
 
     #endregion
 
-    #region Custom Methods
+    #region Language Selection
 
     private void ReceiveLanguage()
     {
@@ -225,19 +226,6 @@ public class QueenBoardManager : MonoBehaviour
         }
     }
 
-    /**
-     * <summary>
-     * Set language.
-     * </summary>
-     */
-    private void SetLanguage(string languageCode)
-    {
-        if (languageSelector != null)
-        {
-            languageSelector.SetLanguage(languageCode);
-        }
-    }
-
     private void LogCharacters(string message)
     {
         if (string.IsNullOrEmpty(message))
@@ -253,6 +241,19 @@ public class QueenBoardManager : MonoBehaviour
             sb.Append($"[{(int)c} '{c}'] ");
         }
         Debug.Log(sb.ToString());
+    }
+
+    /**
+     * <summary>
+     * Set language.
+     * </summary>
+     */
+    private void SetLanguage(string languageCode)
+    {
+        if (languageSelector != null)
+        {
+            languageSelector.SetLanguage(languageCode);
+        }
     }
 
     #endregion

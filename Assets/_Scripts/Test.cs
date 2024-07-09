@@ -28,11 +28,15 @@ public class Test : MonoBehaviour
     {
         ConnectToServer();
         SendGetCommand("int_alpha");
+        SendGetCommand("int_bravo");
+        SendGetCommand("int_charlie");
+        SendGetCommand("int_delta");
+        SendGetCommand("int_echo");
     }
 
     private void Update()
     {
-        ReceiveMessage();
+        ReceiveLanguage();
     }
 
     private void OnApplicationQuit()
@@ -54,7 +58,7 @@ public class Test : MonoBehaviour
         }
         catch (SocketException e)
         {
-            Debug.LogError("SocketException: " + e.Message);
+            Debug.Log("SocketException: " + e.Message);
         }
         catch (IOException e)
         {
@@ -75,7 +79,7 @@ public class Test : MonoBehaviour
         }
         catch (IOException e)
         {
-            Debug.LogError("IOException: " + e.Message);
+            Debug.Log("IOException: " + e.Message);
         }
     }
 
@@ -96,7 +100,7 @@ public class Test : MonoBehaviour
 
     #region Custom Methods
 
-    private void ReceiveMessage()
+    private void ReceiveLanguage()
     {
         if (_client != null && _client.Connected)
         {
@@ -110,7 +114,6 @@ public class Test : MonoBehaviour
                     if (!string.IsNullOrEmpty(message))
                     {
                         message = message.Trim();
-                        string[] parts = message.Split('=');
 
                         if (message.StartsWith("<response") && message.EndsWith("</response>"))
                         {
@@ -125,9 +128,10 @@ public class Test : MonoBehaviour
             }
             catch (IOException e)
             {
-                Debug.LogError("IOException: " + e.Message);
+                Debug.Log("IOException: " + e.Message);
             }
         }
+
     }
 
     private void ParseXmlMessage(string message)
@@ -154,7 +158,7 @@ public class Test : MonoBehaviour
     private void ParseVariableMessage(string message)
     {
         string[] parts = message.Split('=');
-            Debug.Log("OUI");
+
         if (parts.Length == 2)
         {
             string variableName = parts[0].Trim();
@@ -163,22 +167,14 @@ public class Test : MonoBehaviour
             if (int.TryParse(valueStr, out int value))
             {
                 Debug.Log("Received message for variable: " + variableName + " with value: " + value);
-
                 switch (variableName)
                 {
                     case "int_alpha":
-                        Debug.Log("Processing int_alpha: " + value);
-                        // Example action: Set language to English if int_alpha is 1
-                        if (value == 1)
-                        {
-                            SetLanguage("english");
-                        }
-                        break;
                     case "int_bravo":
-                        Debug.Log("Processing int_bravo: " + value);
-                        break;
                     case "int_charlie":
-                        Debug.Log("Processing int_charlie: " + value);
+                    case "int_delta":
+                    case "int_echo":
+                        CheckAndSetLanguage(variableName, value);
                         break;
                     default:
                         Debug.Log("Unknown variable: " + variableName);
@@ -193,6 +189,52 @@ public class Test : MonoBehaviour
         else
         {
             Debug.LogError("Invalid message format: " + message);
+        }
+    }
+
+    private void CheckAndSetLanguage(string team, int value)
+    {
+        string valueStr = value.ToString();
+        Debug.Log($"Processing {team} with value: {valueStr}");
+
+        if (valueStr.Length < 2)
+        {
+            Debug.Log("Value length is less than 2, returning");
+            return;
+        }
+
+        char firstChar = valueStr[0];
+        char secondChar = valueStr[1];
+        Debug.Log($"FirstChar: {firstChar}, SecondChar: {secondChar}");
+
+        string language = secondChar switch
+        {
+            '0' => "english",
+            '1' => "french",
+            '2' => "dutch",
+            _ => null
+        };
+
+        if (language != null)
+        {
+            SetLanguage(language);
+        }
+        else
+        {
+            Debug.LogError("Invalid language value: " + secondChar);
+        }
+    }
+
+    /**
+     * <summary>
+     * Set language.
+     * </summary>
+     */
+    private void SetLanguage(string languageCode)
+    {
+        if (languageSelector != null)
+        {
+            languageSelector.SetLanguage(languageCode);
         }
     }
 
@@ -211,18 +253,6 @@ public class Test : MonoBehaviour
             sb.Append($"[{(int)c} '{c}'] ");
         }
         Debug.Log(sb.ToString());
-    }
-
-    private void SetLanguage(string languageCode)
-    {
-        if (languageSelector != null)
-        {
-            languageSelector.SetLanguage(languageCode);
-        }
-        else
-        {
-            Debug.LogError("LanguageSelector is not set.");
-        }
     }
 
     #endregion
