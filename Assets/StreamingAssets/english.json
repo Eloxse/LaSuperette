@@ -13,6 +13,19 @@
         { "key": "supermarket", "value": "Supermarket" },
         { "key": "technicalArea", "value": "Technical area" },
         { "key": "tryAgain", "value": "Try again" },
-        { "key": "wednesday october 25, 2028", "value": "wednesday october 25, 2028" }
+        { "key": "wednesday october 25, 2028", "value": "wednesday october 25, 2028" },
+        { "key": "clipBookViewer", "value": "ClipBook Viewer" },
+        { "key": "readMe", "value": "ReadMe" },
+        { "key": "calendar", "value": "Calendar" },
+        { "key": "fileManager", "value": "File Manager" },
+        { "key": "printManager", "value": "Print Manager" },
+        { "key": "objectPackager", "value": "Object Packager" },
+        { "key": "barGraph", "value": "Bar Graph" },
+        { "key": "compactDisc", "value": "Compact Disc" },
+        { "key": "fileSystem", "value": "File System" },
+        { "key": "applications", "value": "Applications" },
+        { "key": "msDosPrompt", "value": "MS DOS Prompt" },
+        { "key": "paintTools", "value": "Paint Tools" },
+        { "key": "paintBrush", "value": "Paint Brush" }
     ]
 }

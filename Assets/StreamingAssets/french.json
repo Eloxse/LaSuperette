@@ -13,6 +13,19 @@
         { "key": "supermarket", "value": "Supérette" },
         { "key": "technicalArea", "value": "Local technique" },
         { "key": "tryAgain", "value": "Réessayer" },
-        { "key": "wednesday october 25, 2028", "value": "mercredi 25 Octobre 2028" }
+        { "key": "wednesday october 25, 2028", "value": "mercredi 25 Octobre 2028" },
+        { "key": "clipBookViewer", "value": "Visionneuse de Presse-papier" },
+        { "key": "readMe", "value": "LisezMoi" },
+        { "key": "calendar", "value": "Calendrier" },
+        { "key": "fileManager", "value": "Gestionnaire de Fichiers" },
+        { "key": "printManager", "value": "Gestionnaire d'impression" },
+        { "key": "objectPackager", "value": "Emballage d'objets" },
+        { "key": "barGraph", "value": "Histogramme" },
+        { "key": "compactDisc", "value": "CD" },
+        { "key": "fileSystem", "value": "File System" },
+        { "key": "applications", "value": "Applications" },
+        { "key": "msDosPrompt", "value": "MS DOS Prompt" },
+        { "key": "paintTools", "value": "Paint Tools" },
+        { "key": "paintBrush", "value": "Paint Brush" }
     ]
 }

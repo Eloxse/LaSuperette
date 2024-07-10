@@ -13,6 +13,19 @@
         { "key": "supermarket", "value": "Gemakswinkel" },
         { "key": "technicalArea", "value": "Technisch gebied" },
         { "key": "tryAgain", "value": "Probeer het nog eens" },
-        { "key": "wednesday october 25, 2028", "value": "woensdag 25 oktober 2028" }
+        { "key": "wednesday october 25, 2028", "value": "woensdag 25 oktober 2028" },
+        { "key": "clipBookViewer", "value": "Kladblokviewer" },
+        { "key": "readMe", "value": "Leesmij" },
+        { "key": "calendar", "value": "Kalender" },
+        { "key": "fileManager", "value": "Bestandsbeheer" },
+        { "key": "printManager", "value": "Afdrukbeheer" },
+        { "key": "objectPackager", "value": "Objectverpakker" },
+        { "key": "barGraph", "value": "Staafgrafiek" },
+        { "key": "compactDisc", "value": "Compact disc" },
+        { "key": "fileSystem", "value": "Bestandssysteem" },
+        { "key": "applications", "value": "Applicaties" },
+        { "key": "msDosPrompt", "value": "MS DOS Opdracht-prompt" },
+        { "key": "paintTools", "value": "Tekengereed-schappen" },
+        { "key": "paintBrush", "value": "Tekening-programma" }
     ]
 }
