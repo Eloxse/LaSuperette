@@ -4,13 +4,24 @@ using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class MonitoringController : MonoBehaviour
 {
     #region Variables
 
     [Header("Scenes Manager")]
+    [SerializeField] private float timeBeforeConnection = 2f;
     [SerializeField] private float timeBeforeLoad = 0.5f;
+
+    [Header("Display Time")]
+    [SerializeField] private TMP_Text[] txt_Clocks;
+
+    [Header("Screen Saver")]
+    [SerializeField] private GameObject screenSaver;
+    [SerializeField] private GameObject unlockScreen;
+    [SerializeField] private GameObject desk;
+    [SerializeField] private Button btn_Connection;
 
     [Header("Monitoring Software")]
     [SerializeField] private GameObject monitoringSoftware;
@@ -88,8 +99,72 @@ public class MonitoringController : MonoBehaviour
 
     private void Update()
     {
+        //Clock.
+        DisplayTime();
+
+        //Reading slider.
         UpdateSlider();
         UpdateTimeTexts();
+    }
+
+    #endregion
+
+    #region Current Time
+
+    /**
+     * <summary>
+     * Display real time.
+     * </summary>
+     */
+    private void DisplayTime()
+    {
+        string currentTime = DateTime.Now.ToShortTimeString();
+        foreach (TMP_Text txt_Clock in txt_Clocks)
+        {
+            txt_Clock.text = currentTime;
+        }
+    }
+
+    #endregion
+
+    #region Screen Saver
+
+    /**
+     * <summary>
+     * Button: switch from screen saver to unlock screen.
+     * Coroutine alows time before executing.
+     * </summary>
+     */
+    public void ExitScreenSaver()
+    {
+        StartCoroutine(DelayExitScreenSaver());
+    }
+
+    private IEnumerator DelayExitScreenSaver()
+    {
+        yield return new WaitForSeconds(timeBeforeConnection);
+        screenSaver.SetActive(false);
+    }
+
+    /**
+     * <summary>
+     * Button: connection to the desk.
+     * </summary>
+     */
+    public void DeskConnection()
+    {
+        StartCoroutine(DelayDeskConnection());
+    }
+
+    private IEnumerator DelayDeskConnection()
+    {
+        _sfxManager.Sfx_WindowsStartup.Play();
+        btn_Connection.interactable = false;
+        yield return new WaitForSeconds(timeBeforeConnection);
+
+        unlockScreen.SetActive(false);
+        desk.SetActive(true);
+        btn_Connection.interactable = true;
     }
 
     #endregion

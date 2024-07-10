@@ -1061,8 +1061,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2080420621}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+      - m_Target: {fileID: 2080420622}
+        m_TargetAssemblyTypeName: MonitoringController, Assembly-CSharp
         m_MethodName: DeskConnection
         m_Mode: 1
         m_Arguments:
@@ -3339,8 +3339,8 @@ MonoBehaviour:
           m_StringArgument: ScreenSaver
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2080420621}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+      - m_Target: {fileID: 2080420622}
+        m_TargetAssemblyTypeName: MonitoringController, Assembly-CSharp
         m_MethodName: ExitScreenSaver
         m_Mode: 1
         m_Arguments:
@@ -10059,7 +10059,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2080420620}
-  - component: {fileID: 2080420621}
   - component: {fileID: 2080420622}
   m_Layer: 0
   m_Name: UIManager
@@ -10083,27 +10082,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 388454052}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2080420621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2080420619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19d4643568eb54e4c8b52f06cc8a51db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeBeforeLoad: 2
-  txt_Clocks:
-  - {fileID: 1586742670}
-  - {fileID: 784478330}
-  - {fileID: 592304447}
-  screenSaver: {fileID: 496367191}
-  unlockScreen: {fileID: 1930514777}
-  desk: {fileID: 1928140807}
-  btn_Connection: {fileID: 269337195}
 --- !u!114 &2080420622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10116,7 +10094,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 713e92e81d248f345ae4ce62f6d6722a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBeforeConnection: 2
   timeBeforeLoad: 0.2
+  txt_Clocks:
+  - {fileID: 1586742670}
+  - {fileID: 784478330}
+  - {fileID: 592304447}
+  screenSaver: {fileID: 496367191}
+  unlockScreen: {fileID: 1930514777}
+  desk: {fileID: 1928140807}
+  btn_Connection: {fileID: 269337195}
   monitoringSoftware: {fileID: 1792784573}
   btn_VideoMonitoring: {fileID: 1019768965}
   planDownstairs: {fileID: 964986306}
