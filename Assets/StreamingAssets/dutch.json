@@ -26,6 +26,15 @@
         { "key": "applications", "value": "Applicaties" },
         { "key": "msDosPrompt", "value": "MS DOS Opdracht-prompt" },
         { "key": "paintTools", "value": "Tekengereed-schappen" },
-        { "key": "paintBrush", "value": "Tekening-programma" }
+        { "key": "paintBrush", "value": "Tekening-programma" },
+        { "key": "exitDoor", "value": "Uitgang"},
+        { "key": "importantContacts", "value": "Belangrijke Belangrijke:"},
+        { "key": "marketingManager", "value": "Marketingmanager"},
+        { "key": "maintenanceManager", "value": "Onderhoudsmanager"},
+        { "key": "financialDirector", "value": "Financieel directeur"},
+        { "key": "rh", "value": "HR"},
+        { "key": "passwordWindow", "value": "Deze computer is ingesteld om een wachtwoord te vragen om de deur te openen. Voer hieronder het opstartwachtwoord in:"},
+        { "key": "password", "value": "Wachtwoord:"},
+        { "key": "enterPassword", "value": "Voer het wachtwoord in..."}
     ]
 }

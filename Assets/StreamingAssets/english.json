@@ -26,6 +26,15 @@
         { "key": "applications", "value": "Applications" },
         { "key": "msDosPrompt", "value": "MS DOS Prompt" },
         { "key": "paintTools", "value": "Paint Tools" },
-        { "key": "paintBrush", "value": "Paint Brush" }
+        { "key": "paintBrush", "value": "Paint Brush" },
+        { "key": "exitDoor", "value": "Exit Door"},
+        { "key": "importantContacts", "value": "Important contacts:"},
+        { "key": "marketingManager", "value": "Marketing manager"},
+        { "key": "maintenanceManager", "value": "Maintenance manager"},
+        { "key": "financialDirector", "value": "Financial director"},
+        { "key": "rh", "value": "HR"},
+        { "key": "passwordWindow", "value": "This computer is set to request a password to open the door. Please enter the startup password below:"},
+        { "key": "password", "value": "Password:"},
+        { "key": "enterPassword", "value": "Enter the password..."}
     ]
 }
