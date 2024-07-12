@@ -10,7 +10,7 @@ public class CursorManager : MonoBehaviour
     [SerializeField] private Texture2D loadingCursor;
 
     [Header("Loading Time")]
-    [SerializeField] private float loadingTime = 1f;
+    [SerializeField] private float loadingTime = 2.5f;
 
     //Singleton.
     private static CursorManager _instance;
@@ -19,6 +19,10 @@ public class CursorManager : MonoBehaviour
 
     #region Properties
 
+    //Loading time.
+    public float LoadingTime => loadingTime;
+
+    //Singleton.
     public static CursorManager Instance => _instance;
 
     #endregion

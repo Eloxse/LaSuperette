@@ -33,8 +33,10 @@
         { "key": "maintenanceManager", "value": "Maintenance manager"},
         { "key": "financialDirector", "value": "Financial director"},
         { "key": "rh", "value": "HR"},
-        { "key": "passwordWindow", "value": "This computer is set to request a password to open the door. Please enter the startup password below:"},
+        { "key": "passwordWindow", "value": "This computer is configured to request a password to unlock the door. Please enter the password below:"},
         { "key": "password", "value": "Password:"},
-        { "key": "enterPassword", "value": "Enter the password..."}
+        { "key": "enterPassword", "value": "Enter the password..."},
+        { "key": "errorPassword", "value": "Error"},
+        { "key": "errorMessage", "value": "An error has occurred: incorrect password."}
     ]
 }

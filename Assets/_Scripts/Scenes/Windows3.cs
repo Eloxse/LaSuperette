@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Windows3 : MonoBehaviour
 {
@@ -11,9 +12,14 @@ public class Windows3 : MonoBehaviour
     [SerializeField] private GameObject startupBackground;
     [SerializeField] private GameObject startup, desk;
 
-    [Header("Wordpass Window")]
-    [SerializeField] private GameObject window;
-    [SerializeField] private Button btn_ExitDoor, btn_Ok;
+    [Header("Password Window")]
+    [SerializeField] private GameObject passwordWindow;
+    [SerializeField] private GameObject errorPopUp, correctPopUp;
+    [SerializeField] private Button btn_ExitDoor, btn_validatePassword;
+
+    [Header("Password")]
+    [SerializeField] private TMP_InputField if_Password;
+    [SerializeField] private string correctCode = "8524";
 
     //Singleton.
     private static CursorManager _cursorManager;
@@ -74,7 +80,7 @@ public class Windows3 : MonoBehaviour
      * Button: Active wordpass window.
      * </summary>
      */
-    public void WordpassWindow()
+    public void PasswordWindow()
     {
         StartCoroutine(LoadingWindow());
     }
@@ -83,8 +89,8 @@ public class Windows3 : MonoBehaviour
     {
         _cursorManager.SetLoadingCursor();
         btn_ExitDoor.interactable = false;
-        yield return new WaitForSeconds(2.5f);
-        window.SetActive(true);
+        yield return new WaitForSeconds(_cursorManager.LoadingTime);
+        passwordWindow.SetActive(true);
     }
 
     /**
@@ -92,19 +98,61 @@ public class Windows3 : MonoBehaviour
      * Button: Closed window.
      * </summary>
      */
-    public void CloseWindow()
+    public void ClosePasswordWindow()
     {
-        window.SetActive(false);
+        passwordWindow.SetActive(false);
         btn_ExitDoor.interactable = true;
     }
+    
+    public void CloseErrorWindow()
+    {
+        errorPopUp.SetActive(false);
+        btn_validatePassword.interactable = true;
+    }
 
-    public void OkButton()
+    /**
+     * <summary>
+     * Button: Validate the password.
+     * </summary>
+     */
+    public void ValidatePasseword()
     {
         _cursorManager .SetLoadingCursor();
-        btn_Ok.interactable = false;
-        //if true = porte
-        //if false = error pop up
-        //btn ok interactable trues
+        btn_validatePassword.interactable = false;
+
+        //Checking if password is correct.
+        string enteredCode = if_Password.text;
+
+        if (enteredCode == correctCode)
+        {
+            StartCoroutine(LoadCorrectPopUp());
+        }
+        else
+        {
+            StartCoroutine(LoadErrorPopUp());
+        }
+    }
+
+    /**
+     * <summary>
+     * Loading error pop up.
+     * </summary>
+     */
+    private IEnumerator LoadErrorPopUp()
+    {
+        yield return new WaitForSeconds(_cursorManager.LoadingTime);
+        errorPopUp.SetActive(true);
+    }
+
+    /**
+     * <summary>
+     * Loading correct pop up.
+     * </summary>
+     */
+    private IEnumerator LoadCorrectPopUp()
+    {
+        yield return new WaitForSeconds(_cursorManager.LoadingTime);
+        correctPopUp.SetActive(true);
     }
 
     #endregion

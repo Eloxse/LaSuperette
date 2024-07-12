@@ -33,8 +33,10 @@
         { "key": "maintenanceManager", "value": "Responsable maintenance"},
         { "key": "financialDirector", "value": "Directeur financier"},
         { "key": "rh", "value": "RH"},
-        { "key": "passwordWindow", "value": "Cet ordinateur est configuré pour demander un mot de passe afin d'ouvrir la porte. Veuillez entrer le mot de passe de démarrage ci-dessous:"},
+        { "key": "passwordWindow", "value": "Cet ordinateur est configuré pour demander un mot de passe afin de déverouiller la porte. Veuillez entrer le mot de passe ci-dessous:"},
         { "key": "password", "value": "Mot de passe:"},
-        { "key": "enterPassword", "value": "Entrer le mot de passe..."}
+        { "key": "enterPassword", "value": "Entrer le mot de passe..."},
+        { "key": "errorPassword", "value": "Erreur"},
+        { "key": "errorMessage", "value": "Une erreur s'est produite: mot de passe incorrect."}
     ]
 }
