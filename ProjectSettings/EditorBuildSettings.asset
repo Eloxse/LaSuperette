@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/_Scenes/VideoSurveillance.unity
+    path: Assets/_Scenes/VideoMonitoring.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/_Scenes/PcNorbert.unity
+    path: Assets/_Scenes/NorbertPc.unity
     guid: a7e0f454eb4188d4baf32b97a78589b0
   m_configObjects: {}

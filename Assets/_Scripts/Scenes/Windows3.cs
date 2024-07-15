@@ -21,8 +21,13 @@ public class Windows3 : MonoBehaviour
     [SerializeField] private TMP_InputField if_Password;
     [SerializeField] private string correctCode = "8524";
 
+    [Header("Games")]
+    [SerializeField] private GameObject gamesWindows;
+    [SerializeField] private Button btn_Games;
+
     //Singleton.
     private static CursorManager _cursorManager;
+    private static SFXManager _sfxManager;
 
     #endregion
 
@@ -32,6 +37,7 @@ public class Windows3 : MonoBehaviour
     {
         //Singleton.
         _cursorManager = CursorManager.Instance;
+        _sfxManager = SFXManager.Instance;
     }
 
     #endregion
@@ -48,6 +54,11 @@ public class Windows3 : MonoBehaviour
         encryption.SetActive(true);
     }
 
+    public void PlayMsDosSfx()
+    {
+        _sfxManager.Sfx_MsDosBoot.Play();
+    }
+
     /**
      * <summary>
      * Active startup background after animation encryption.
@@ -57,6 +68,9 @@ public class Windows3 : MonoBehaviour
     {
         startupBackground.SetActive(true);
         encryption.SetActive(false);
+        _sfxManager.Sfx_MsDos.Stop();
+        _sfxManager.Sfx_Windows3Startup.Play();
+        _sfxManager.Sfx_Computer.Play();
     }
 
     #endregion
@@ -84,7 +98,6 @@ public class Windows3 : MonoBehaviour
     {
         StartCoroutine(LoadingWindow());
     }
-
     private IEnumerator LoadingWindow()
     {
         _cursorManager.SetLoadingCursor();
@@ -107,6 +120,10 @@ public class Windows3 : MonoBehaviour
     {
         errorPopUp.SetActive(false);
         btn_validatePassword.interactable = true;
+    }
+    public void CloseCorrectWindow()
+    {
+        correctPopUp.SetActive(false);
     }
 
     /**
@@ -141,6 +158,7 @@ public class Windows3 : MonoBehaviour
     {
         yield return new WaitForSeconds(_cursorManager.LoadingTime);
         errorPopUp.SetActive(true);
+        _sfxManager.Sfx_ErrorPopUp1.Play();
     }
 
     /**
@@ -152,6 +170,27 @@ public class Windows3 : MonoBehaviour
     {
         yield return new WaitForSeconds(_cursorManager.LoadingTime);
         correctPopUp.SetActive(true);
+        _sfxManager.Sfx_CorrectPopUp.Play();
+    }
+
+    #endregion
+
+    #region Games
+
+    /**
+     * <summary>
+     * Button: Active games window.
+     * </summary>
+     */
+    public void GamesWindows()
+    {
+        StartCoroutine(LoadGameWindow());
+    }
+    private IEnumerator LoadGameWindow()
+    {
+        btn_Games.interactable = false;
+        yield return new WaitForSeconds(_cursorManager.LoadingTime);
+        gamesWindows.SetActive(true);
     }
 
     #endregion

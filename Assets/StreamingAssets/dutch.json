@@ -39,6 +39,7 @@
         { "key": "errorPassword", "value": "Fout"},
         { "key": "errorMessage", "value": "Er is een fout opgetreden: onjuist wachtwoord."},
         { "key": "correct", "value": "Success !"},
-        { "key": "correctMessage", "value": "Geldig wachtwoord: Toegang verleend!"}
+        { "key": "correctMessage", "value": "Geldig wachtwoord: Toegang verleend!"},
+        { "key": "games", "value": "Spellen"}
     ]
 }

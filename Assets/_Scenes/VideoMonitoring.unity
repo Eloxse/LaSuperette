@@ -5164,9 +5164,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d51b691897d57941beb739c2b91c910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sfx_WindowsStartup: {fileID: 1020655332}
+  sfx_Windows10Startup: {fileID: 1020655332}
   sfx_NavigationStart: {fileID: 1020655333}
   sfx_ErrorPopUp: {fileID: 1020655334}
+  sfx_Windows3Startup: {fileID: 0}
 --- !u!82 &1020655332
 AudioSource:
   m_ObjectHideFlags: 0

@@ -158,7 +158,7 @@ public class MonitoringController : MonoBehaviour
 
     private IEnumerator DelayDeskConnection()
     {
-        _sfxManager.Sfx_WindowsStartup.Play();
+        _sfxManager.Sfx_Windows10Startup.Play();
         btn_Connection.interactable = false;
         yield return new WaitForSeconds(timeBeforeConnection);
 

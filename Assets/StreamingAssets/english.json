@@ -39,6 +39,7 @@
         { "key": "errorPassword", "value": "Error"},
         { "key": "errorMessage", "value": "An error has occurred: incorrect password."},
         { "key": "correct", "value": "Success !"},
-        { "key": "correctMessage", "value": "Valid password: Access granted!"}
+        { "key": "correctMessage", "value": "Valid password: Access granted!"},
+        { "key": "games", "value": "Games"}
     ]
 }
