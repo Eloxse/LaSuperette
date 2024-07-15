@@ -37,6 +37,8 @@
         { "key": "password", "value": "Wachtwoord:"},
         { "key": "enterPassword", "value": "Voer het wachtwoord in..."},
         { "key": "errorPassword", "value": "Fout"},
-        { "key": "errorMessage", "value": "Er is een fout opgetreden: onjuist wachtwoord."}
+        { "key": "errorMessage", "value": "Er is een fout opgetreden: onjuist wachtwoord."},
+        { "key": "correct", "value": "Success !"},
+        { "key": "correctMessage", "value": "Geldig wachtwoord: Toegang verleend!"}
     ]
 }

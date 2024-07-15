@@ -95,7 +95,7 @@ public class Windows3 : MonoBehaviour
 
     /**
      * <summary>
-     * Button: Closed window.
+     * Button: Closed windows.
      * </summary>
      */
     public void ClosePasswordWindow()
@@ -103,7 +103,6 @@ public class Windows3 : MonoBehaviour
         passwordWindow.SetActive(false);
         btn_ExitDoor.interactable = true;
     }
-    
     public void CloseErrorWindow()
     {
         errorPopUp.SetActive(false);

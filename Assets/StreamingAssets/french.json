@@ -37,6 +37,8 @@
         { "key": "password", "value": "Mot de passe:"},
         { "key": "enterPassword", "value": "Entrer le mot de passe..."},
         { "key": "errorPassword", "value": "Erreur"},
-        { "key": "errorMessage", "value": "Une erreur s'est produite: mot de passe incorrect."}
+        { "key": "errorMessage", "value": "Une erreur s'est produite: mot de passe incorrect."},
+        { "key": "correct", "value": "Correct !"},
+        { "key": "correctMessage", "value": "Mot de passe valide : Accès autorisé !"}
     ]
 }
