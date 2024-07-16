@@ -108,7 +108,7 @@ public class Windows3 : MonoBehaviour
 
     /**
      * <summary>
-     * Button: Closed windows.
+     * Button: Close windows.
      * </summary>
      */
     public void ClosePasswordWindow()
@@ -188,9 +188,21 @@ public class Windows3 : MonoBehaviour
     }
     private IEnumerator LoadGameWindow()
     {
+        _cursorManager.SetLoadingCursor();
         btn_Games.interactable = false;
         yield return new WaitForSeconds(_cursorManager.LoadingTime);
         gamesWindows.SetActive(true);
+    }
+
+    /**
+     * <summary>
+     * Button: Closed windows.
+     * </summary>
+     */
+    public void CloseGamesWindow()
+    {
+        gamesWindows.SetActive(false);
+        btn_Games.interactable = true;
     }
 
     #endregion
