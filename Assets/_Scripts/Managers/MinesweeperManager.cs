@@ -8,8 +8,8 @@ public class MinesweeperManager : MonoBehaviour
     #region Variables
 
     [Header("Grid")]
-    [SerializeField] private TileGrid tileGrid;
-    [SerializeField] private Tile normalTilePrefab, bombTilePrefab;
+   // [SerializeField] private TileGrid tileGrid;
+   // [SerializeField] private Tile normalTilePrefab, bombTilePrefab;
     [SerializeField] private int bombCount = 5;
 
     [Header("UI")]
@@ -22,7 +22,7 @@ public class MinesweeperManager : MonoBehaviour
 
     //Grid.
     private GameObject _tileContainer = null;
-    private List<Tile> _tiles = new List<Tile>();
+    //private List<Tile> _tiles = new List<Tile>();
 
     //UI.
     private bool _isGameOver = false;
@@ -88,15 +88,15 @@ public class MinesweeperManager : MonoBehaviour
     private void AddBombsToGrid()
     {
         // Make sure the number of bombs is not larger than the grid size.
-        bombCount = Mathf.Min(bombCount, tileGrid.Width * tileGrid.Height);
+        //bombCount = Mathf.Min(bombCount, tileGrid.Width * tileGrid.Height);
 
         for (int i = 0; i < bombCount; i++)
         {
-            int x = Random.Range(0, tileGrid.Width);
-            int y = Random.Range(0, tileGrid.Height);
+           // int x = Random.Range(0, tileGrid.Width);
+           // int y = Random.Range(0, tileGrid.Height);
 
             // Add a bomb if no tile has been assigned yet to the position.
-            if (tileGrid.TryGetTile(x, y, out _) == false)
+          /*  if (tileGrid.TryGetTile(x, y, out _) == false)
             {
                 //AddTileToGrid(x, y, bombTilePrefab);
             }
@@ -104,7 +104,7 @@ public class MinesweeperManager : MonoBehaviour
             else
             {
                 i--;
-            }
+            }*/
         }
     }
     #endregion

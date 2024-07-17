@@ -5,19 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/_Scenes/VideoMonitoring.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/_Scenes/NorbertPc.unity
-    guid: a7e0f454eb4188d4baf32b97a78589b0
+    path: Assets/Ilumisoft/Minesweeper/Scenes/Menu.unity
+    guid: 8a729fa0539419c419aed93c85ea7d08
   - enabled: 1
     path: Assets/_Scenes/Minesweeper/Minesweeper_Easy.unity
-    guid: 105cd8115f63f18499042307b48fe818
-  - enabled: 1
-    path: Assets/_Scenes/Minesweeper/Minesweeper_Medium.unity
-    guid: 6a0677bf40d794b4a85693b93bb5d8b4
+    guid: bb1b1035ba5464a44b622ea278572082
   - enabled: 1
     path: Assets/_Scenes/Minesweeper/Minesweeper_Hard.unity
-    guid: bea3ee0ee1453c645833f7320dd623e1
+    guid: aaea45d78a105f74ca1f368ce58bc272
+  - enabled: 1
+    path: Assets/_Scenes/Minesweeper/Minesweeper_Medium.unity
+    guid: ed095859b7331b3489110e291a056678
   m_configObjects: {}
