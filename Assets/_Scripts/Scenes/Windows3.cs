@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Windows3 : MonoBehaviour
@@ -23,7 +24,7 @@ public class Windows3 : MonoBehaviour
 
     [Header("Games")]
     [SerializeField] private GameObject gamesWindows;
-    [SerializeField] private Button btn_Games;
+    [SerializeField] private Button btn_Games, btn_Minesweeper;
 
     //Singleton.
     private static CursorManager _cursorManager;
@@ -203,6 +204,23 @@ public class Windows3 : MonoBehaviour
     {
         gamesWindows.SetActive(false);
         btn_Games.interactable = true;
+    }
+
+    /**
+     * <summary>
+     * Button: Open minesweeper game.
+     * </summary>
+     */
+    public void LoadMinesweeper()
+    {
+        StartCoroutine(DelayLoadMinesweeper());
+    }
+    private IEnumerator DelayLoadMinesweeper()
+    {
+        btn_Minesweeper.interactable = false;
+        _cursorManager.SetLoadingCursor();
+        yield return new WaitForSeconds(_cursorManager.LoadingTime);
+        SceneManager.LoadScene("Minesweeper_Easy", LoadSceneMode.Single);
     }
 
     #endregion

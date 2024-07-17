@@ -40,6 +40,18 @@
         { "key": "errorMessage", "value": "An error has occurred: incorrect password."},
         { "key": "correct", "value": "Success !"},
         { "key": "correctMessage", "value": "Valid password: Access granted!"},
-        { "key": "games", "value": "Games"}
+        { "key": "games", "value": "Games"},
+        { "key": "game", "value": "Game"},
+        { "key": "minesweeper", "value": "Minesweeper"},
+        { "key": "help", "value": "Help"},
+        { "key": "retry", "value": "New             F2"},
+        { "key": "beginner", "value": "Beginner"},
+        { "key": "intermediate", "value": "Intermediate"},
+        { "key": "expert", "value": "Expert"},
+        { "key": "exit", "value": "Exit"},
+        { "key": "custom", "value": "Custom..."},
+        { "key": "marks", "value": "Marks [?]"},
+        { "key": "color", "value": "Color"},
+        { "key": "bestTime", "value": "Best Times..."}
     ]
 }

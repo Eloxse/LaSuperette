@@ -40,6 +40,18 @@
         { "key": "errorMessage", "value": "Une erreur s'est produite: mot de passe incorrect."},
         { "key": "correct", "value": "Correct !"},
         { "key": "correctMessage", "value": "Mot de passe valide : Accès autorisé !"},
-        { "key": "games", "value": "Jeux"}
+        { "key": "games", "value": "Jeux"},
+        { "key": "game", "value": "Jeu"},
+        { "key": "minesweeper", "value": "Démineur"},
+        { "key": "help", "value": "Aide"},
+        { "key": "retry", "value": "Nouveau         F2"},
+        { "key": "beginner", "value": "Débutant"},
+        { "key": "intermediate", "value": "Intermédiaire"},
+        { "key": "expert", "value": "Expert"},
+        { "key": "exit", "value": "Quitter"},
+        { "key": "custom", "value": "Personnaliser..."},
+        { "key": "marks", "value": "Marques [?]"},
+        { "key": "color", "value": "Couleurs"},
+        { "key": "bestTime", "value": "Meilleurs temps..."}
     ]
 }

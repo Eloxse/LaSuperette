@@ -40,6 +40,18 @@
         { "key": "errorMessage", "value": "Er is een fout opgetreden: onjuist wachtwoord."},
         { "key": "correct", "value": "Success !"},
         { "key": "correctMessage", "value": "Geldig wachtwoord: Toegang verleend!"},
-        { "key": "games", "value": "Spellen"}
+        { "key": "games", "value": "Spellen"},
+        { "key": "game", "value": "Spel"},
+        { "key": "minesweeper", "value": "Mijnenveger"},
+        { "key": "help", "value": "Hulp"},
+        { "key": "retry", "value": "Niew            F2"},
+        { "key": "beginner", "value": "Beginner"},
+        { "key": "intermediate", "value": "Tussenliggend"},
+        { "key": "expert", "value": "Deskundige"},
+        { "key": "exit", "value": "Verlaten"},
+        { "key": "custom", "value": "Aangepast..."},
+        { "key": "marks", "value": "Merken [?]"},
+        { "key": "color", "value": "Kleur"},
+        { "key": "bestTime", "value": "Beste tijden..."}
     ]
 }
