@@ -5,9 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Ilumisoft/Minesweeper/Scenes/Menu.unity
     guid: 8a729fa0539419c419aed93c85ea7d08
+  - enabled: 0
+    path: Assets/_Scenes/VideoMonitoring.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/_Scenes/NorbertPc.unity
+    guid: a7e0f454eb4188d4baf32b97a78589b0
   - enabled: 1
     path: Assets/_Scenes/Minesweeper/Minesweeper_Easy.unity
     guid: bb1b1035ba5464a44b622ea278572082
